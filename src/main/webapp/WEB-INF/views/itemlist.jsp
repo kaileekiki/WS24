@@ -20,17 +20,31 @@
   </thead>
   <tbody>
 
-      <c:forEach var="item" items="${itemlist}">
-        <tr>
-          <td>
-            <img src="${pageContext.request.contextPath}/upload/${item.filename}" alt="상품 이미지" style="width: 100px; height: auto;">
-          </td>
-          <td>
-            <a href="${pageContext.request.contextPath}/item/view?id=${item.id}">${item.title}</a>
-          </td>
-          <td>${item.price}원</td>
-        </tr>
-      </c:forEach>
+  <c:forEach var="item" items="${itemlist}">
+    <tr>
+      <<<<<<< front
+      <td>
+        <img src="${pageContext.request.contextPath}/upload/${item.filename}" alt="상품 이미지" style="width: 100px; height: auto;">
+      </td>
+      <td>
+        <a href="${pageContext.request.contextPath}/item/view?id=${item.id}">${item.title}</a>
+      </td>
+      <td>${item.price}원</td>
+      =======
+      <td>
+
+        <img src="${pageContext.request.contextPath}/resources/img/${item.filename}"
+             class="file"
+             alt="상품 이미지"
+             style="width: 100px; height: auto;">
+      </td>
+      <td>
+        <a href="${pageContext.request.contextPath}/item/view?id=${item.id}">${item.title}</a>
+      </td>
+      <td>${item.price}원</td>
+      >>>>>>> main
+    </tr>
+  </c:forEach>
 
   </tbody>
 </table>
