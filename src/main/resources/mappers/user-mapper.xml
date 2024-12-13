@@ -9,4 +9,9 @@
         where userid=#{userid} and
         password=#{password};
     </select>
+
+    <insert id="insertUser">
+        INSERT INTO User (userid, password)
+        VALUES (#{userid}, #{password});
+    </insert>
 </mapper>
