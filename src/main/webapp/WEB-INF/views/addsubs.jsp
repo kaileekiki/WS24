@@ -39,7 +39,7 @@
     </div>
     <div>
         <label for="endDate">End Date:</label>
-        <input type="date" id="endDate" name="startDate" required />
+        <input type="date" id="endDate" name="endDate" required />
     </div>
     <div>
         <button type="submit">상품 등록</button>
