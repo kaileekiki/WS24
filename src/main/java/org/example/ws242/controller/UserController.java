@@ -1,6 +1,7 @@
 package org.example.ws242.controller;
 
 import org.example.ws242.login.UserServiceImpl;
+import org.example.ws242.service.UserService;
 import org.example.ws242.vo.UserVO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -12,7 +13,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 @RequestMapping(value = "/user")
 public class UserController {
     @Autowired
-    private UserServiceImpl userService;
+    private UserService userService;
 
     // 회원가입 폼 이동
     @RequestMapping(value = "/add", method = RequestMethod.GET)
@@ -21,8 +22,8 @@ public class UserController {
     }
 
     // 회원가입 처리
-    @RequestMapping(value = "/add", method = RequestMethod.POST)
-    public String addUser(@ModelAttribute UserVO user) {
+    @RequestMapping(value = "/addok", method = RequestMethod.POST)
+    public String addUser(UserVO user) {
         userService.addUser(user);
         return "redirect:/login/login"; // 회원가입 후 로그인 페이지로 이동
     }

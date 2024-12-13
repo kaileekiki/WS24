@@ -1,4 +1,4 @@
-package org.example.ws242.login;
+package org.example.ws242.service;
 
 import org.example.ws242.dao.UserDAO;
 import org.example.ws242.vo.UserVO;
@@ -6,11 +6,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 @Service
-public class UserServiceImpl {
+public class UserService {
     @Autowired
     UserDAO userDAO;
-    public UserVO getUser(UserVO vo) {
-        return userDAO.getUser(vo);
+
+    public void addUser(UserVO user) {
+        userDAO.insertUser(user);
     }
 
 }
