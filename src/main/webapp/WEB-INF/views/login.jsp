@@ -12,13 +12,13 @@
 </head>
 <body>
 
-<form method="post" action="loginOk">
+<form method="post" action="/user/loginOk">
     <div><label>User ID: </label><input type='text' name='userid' /></div>
     <div><label>Password: </label><input type='password' name='password' /></div>
     <button type='submit'>login</button>
 </form>
 
-<button type="button" onclick="window.location.href='/user/add';">회원가입</button>
+<button type="button" onclick="location.href='/user/add'">회원가입</button>
 
 
 
