@@ -18,7 +18,7 @@
 
 <div>
     <h3>공동구매</h3>
-    <table>
+    <table id="itemlist">
         <thead>
         <tr>
             <th>상품</th>
