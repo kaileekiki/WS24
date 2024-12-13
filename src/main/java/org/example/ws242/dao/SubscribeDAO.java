@@ -17,4 +17,8 @@ public class SubscribeDAO {
         List<SubscribeVO> list = sqlSession.selectList("Subscribe.getSubs");
         return list;
     }
+
+    public SubscribeVO getSubscribeById(int id) {
+        return sqlSession.selectOne("Subscribe.getSubscribeById", id);  // SQL Mapper 호출
+    }
 }

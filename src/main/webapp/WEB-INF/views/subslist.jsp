@@ -5,7 +5,7 @@
   Time: 오후 2:17
   To change this template use File | Settings | File Templates.
 --%>
-<%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
+<%@ page contentType="text/html; charset=UTF-8" isELIgnored="false" pageEncoding="UTF-8" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html>
 <html lang="ko">
@@ -26,27 +26,19 @@
     </tr>
     </thead>
     <tbody>
-    <c:choose>
-        <c:when test="${not empty subscribelist}">
-            <c:forEach var="item" items="${subscribelist}">
+            <c:forEach var="subs" items="${subscribelist}">
                 <tr>
                     <td>
-                        <a href="view.jsp?id=${subscribelistt.id}">
-                                ${subscribelist.title}
+                        <a href="${pageContext.request.contextPath}/subscribe/view?id=${subs.id}">
+                                ${subs.title}
                         </a>
                     </td>
-                    <td>${subscribelist.price}원</td>
-                    <td>${subscribelist.startDate}</td>
-                    <td>${subscribelist.EndDate}</td>
+                    <td>${subs.price}원</td>
+                    <td>${subs.startDate}</td>
+                    <td>${subs.endDate}</td>
                 </tr>
             </c:forEach>
-        </c:when>
-        <c:otherwise>
-            <tr>
-                <td colspan="3">등록된 상품이 없습니다.</td>
-            </tr>
-        </c:otherwise>
-    </c:choose>
+
     </tbody>
 </table>
 </body>

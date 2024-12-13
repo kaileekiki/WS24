@@ -16,4 +16,8 @@ public class ItemDAO {
         List<ItemVO> list = sqlSession.selectList("Item.getItems");
         return list;
     }
+
+    public ItemVO getItemById(int id) {
+        return sqlSession.selectOne("Item.getItemById", id);  // 상품 아이디로 조회
+    }
 }
