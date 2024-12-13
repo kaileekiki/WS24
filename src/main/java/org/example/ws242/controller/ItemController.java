@@ -8,11 +8,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 @Controller
-@RequestMapping(value="/item")
+//@RequestMapping(value="/item")
 public class ItemController {
     @Autowired
     private ItemService itemService;
-    @RequestMapping(value = "/list", method = RequestMethod.GET)
+    @RequestMapping(value = "/home", method = RequestMethod.GET)
     public String ItemList(Model model) {
         model.addAttribute("itemlist", itemService.getItemList());
         return "main";
