@@ -17,7 +17,14 @@ public class ItemService {
         return itemDAO.getItemList();
     }
 
+
+    public int addItem(ItemVO item) {
+        return itemDAO.insertItem(item);
+    }
+
+
     public ItemVO getItemById(int id) {
         return itemDAO.getItemById(id);  // DAO를 호출하여 아이템 조회
     }
+
 }

@@ -17,7 +17,13 @@ public class ItemDAO {
         return list;
     }
 
+
+    public int insertItem(ItemVO item) {
+        return sqlSession.insert("Item.insertItem", item);
+    }
+
     public ItemVO getItemById(int id) {
         return sqlSession.selectOne("Item.getItemById", id);  // 상품 아이디로 조회
     }
+
 }
