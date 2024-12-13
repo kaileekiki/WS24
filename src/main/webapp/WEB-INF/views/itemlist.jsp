@@ -25,13 +25,13 @@
   </thead>
   <tbody>
   <c:choose>
-    <c:when test="${not empty items}">
-      <c:forEach var="item" items="${items}">
+    <c:when test="${not empty itemlist}">
+      <c:forEach var="item" items="${itemlist}">
         <tr>
           <td>
             <c:choose>
-              <c:when test="${not empty item.filename}">
-                <img src="${pageContext.request.contextPath}/uploads/${item.filename}" alt="상품 이미지" style="width: 100px; height: auto;">
+              <c:when test="${not empty itemlist.filename}">
+                <img src="${pageContext.request.contextPath}/uploads/${itemlist.filename}" alt="상품 이미지" style="width: 100px; height: auto;">
               </c:when>
               <c:otherwise>
                 <span>이미지 없음</span>
@@ -39,11 +39,11 @@
             </c:choose>
           </td>
           <td>
-            <a href="view.jsp?id=${item.id}">
-                ${item.title}
+            <a href="view.jsp?id=${itemlist.id}">
+                ${itemlist.title}
             </a>
           </td>
-          <td>${item.price}원</td>
+          <td>${itemlist.price}원</td>
         </tr>
       </c:forEach>
     </c:when>

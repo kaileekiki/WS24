@@ -37,7 +37,7 @@
     <button type="button" onclick="location.href=''">공동구매하러 가기</button>
 
     <h3>공동구독</h3>
-    <table>
+    <table id="subscribelist">
         <thead>
         <tr>
             <th>상품</th>
@@ -45,7 +45,7 @@
         </tr>
         </thead>
         <tbody>
-        <c:forEach items="${subslist}" var="u">
+        <c:forEach items="${subscribelist}" var="u">
             <tr>
                 <td>${u.title}</td>
                 <td>${u.price}</td>
@@ -53,7 +53,7 @@
         </c:forEach>
         </tbody>
     </table>
-    <button type="button" onclick="location.href='  '">공동구독하러 가기</button>
+    <button type="button" onclick="location.href=''">공동구독하러 가기</button>
 
     <div>
         <button type="button" onclick="location.href='  '">공동구매 상품 등록하기</button>
