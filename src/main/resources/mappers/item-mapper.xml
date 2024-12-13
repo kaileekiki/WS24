@@ -6,6 +6,7 @@
     <select id="getItems" resultType="org.example.ws242.vo.ItemVO">
         SELECT * FROM Item
     </select>
-
-
+    <select id="getItemById" parameterType="int" resultType="org.example.ws242.vo.ItemVO">
+        SELECT * FROM Item WHERE id = #{id};
+    </select>
 </mapper>

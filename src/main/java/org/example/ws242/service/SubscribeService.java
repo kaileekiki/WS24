@@ -18,4 +18,8 @@ public class SubscribeService {
     public List<SubscribeVO> getSubscribeList() {
         return subscribeDAO.getSubsList();
     }
+
+    public SubscribeVO getSubscribeById(int id) {
+        return subscribeDAO.getSubscribeById(id);
+    }
 }
