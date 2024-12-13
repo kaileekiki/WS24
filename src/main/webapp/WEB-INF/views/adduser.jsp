@@ -7,7 +7,7 @@
 </head>
 <body>
 <h1>회원가입</h1>
-<form method="post" action="/user/add">
+<form method="post" action="addok">
     <div>
         <label for="userid">아이디:</label>
         <input type="text" id="userid" name="userid" required />
@@ -18,7 +18,7 @@
     </div>
     <div>
         <label for="username">유저이름:</label>
-        <input type="text" id="username" name="password" required />
+        <input type="text" id="username" name="username" required />
     </div>
     <div>
         <button type="submit">가입하기</button>

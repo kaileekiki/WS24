@@ -10,8 +10,12 @@ public class UserService {
     @Autowired
     UserDAO userDAO;
 
-    public void addUser(UserVO user) {
-        userDAO.insertUser(user);
+    public int addUser(UserVO user) {
+        return userDAO.insertUser(user);
+    }
+
+    public int checkId(String id) {
+        return userDAO.checkId(id);
     }
 
 }
