@@ -8,7 +8,7 @@
 <body>
 <h2>상품 추가</h2>
 
-<form method="post" action="">
+<form method="post" action="addok">
     <div>
         <label for="title">상품명:</label>
         <input type="text" id="title" name="title" required />

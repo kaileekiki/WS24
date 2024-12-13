@@ -16,6 +16,9 @@ public class SubscribeDAO {
         List<SubscribeVO> list = sqlSession.selectList("Subscribe.getSubs");
         return list;
     }
+    public int insertSubscribe(SubscribeVO subscribe) {
+        return sqlSession.insert("Subscribe.insertSubscribe", subscribe);
+    }
 
     public SubscribeVO getSubscribeById(int id) {
         return sqlSession.selectOne("Subscribe.getSubscribeById", id);

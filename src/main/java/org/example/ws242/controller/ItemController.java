@@ -3,14 +3,12 @@ package org.example.ws242.controller;
 import com.oreilly.servlet.MultipartRequest;
 import org.example.ws242.service.ItemService;
 import org.example.ws242.vo.ItemVO;
+import org.example.ws242.vo.UserVO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import com.oreilly.servlet.multipart.DefaultFileRenamePolicy;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
 import javax.servlet.http.HttpServletRequest;
@@ -36,11 +34,16 @@ public class ItemController {
     }
 
     @RequestMapping(value = "/addok", method = RequestMethod.POST)
-    public String addItem(HttpServletRequest request) {
+    public String addItem(HttpServletRequest request, @SessionAttribute(value = "login", required = false) UserVO loggedInUser) {
+        if (loggedInUser == null) {
+            // 로그인이 안 된 경우 처리
+            System.out.println("로그인이 필요합니다.");
+            return "redirect:/login/login";
+        }
+
         int sizeLimit = 15 * 1024 * 1024; // 15MB
         String realPath = request.getServletContext().getRealPath("/resources/img");
         System.out.println("File saved at: " + realPath);
-
 
         // 디렉토리 생성
         File dir = new File(realPath);
@@ -71,6 +74,9 @@ public class ItemController {
             item.setPeopleLimit(peopleLimit);
             item.setFilename(filename);
 
+            // 세션에서 가져온 user_id 설정
+            item.setUserVO(loggedInUser);
+
             // DB에 저장
             itemService.addItem(item);
         } catch (Exception e) {
@@ -79,6 +85,7 @@ public class ItemController {
         }
         return "redirect:/item/list";
     }
+
 
     @RequestMapping(value = "/view", method = RequestMethod.GET)
     public String viewItem(@RequestParam("id") int id, Model model) {
