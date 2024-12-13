@@ -1,111 +1,60 @@
-<%@ include file="top.jsp" %>
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ page language="java" contentType="text/html; charset=UTF-8" isELIgnored="false" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ko">
 <head>
     <meta charset="UTF-8">
-    <title>My Page</title>
+    <title>마이 페이지</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
 </head>
 <body>
-
-<h1>마이페이지</h1>
-
-<!-- 유저 정보 -->
-<div>
-    <h2>내 정보</h2>
-    <table border="1">
-        <tr>
-            <th>이름</th>
-            <td>${user.name}</td>
-        </tr>
-        <tr>
-            <th>이메일</th>
-            <td>${user.email}</td>
-        </tr>
-        <tr>
-            <th>가입일</th>
-            <td>${user.regdate}</td>
-        </tr>
-    </table>
-</div>
-
-<!-- 내가 찜한 목록 -->
-<div>
-    <h2>내가 찜한 목록</h2>
-    <table border="1" cellpadding="10" cellspacing="0" style="width: 100%; text-align: center;">
-        <thead>
-        <tr>
-            <th>상품명</th>
-            <th>가격</th>
-            <th>자세히 보기</th>
-        </tr>
-        </thead>
-        <tbody>
-        <c:forEach var="favorite" items="${favorites}">
-            <tr>
-                <td>${favorite.title}</td>
-                <td>${favorite.price}원</td>
-                <td><a href="viewitem.jsp?id=${favorite.id}">보기</a></td>
-            </tr>
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <div class="container-fluid">
+        <a class="navbar-brand" href="${pageContext.request.contextPath}/home">홈페이지</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav ms-auto">
+                <li class="nav-item">
+                    <a class="nav-link" href="${pageContext.request.contextPath}/mypage">마이페이지</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="${pageContext.request.contextPath}/logout.do">로그아웃</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
+<div class="container mt-5">
+    <h1>마이 페이지</h1>
+    <div>
+        <h2>내 정보</h2>
+        <p><strong>아이디:</strong> ${userDetails.userid}</p>
+        <p><strong>이름:</strong> ${userDetails.username}</p>
+        <p><strong>이메일:</strong> ${userDetails.email}</p>
+        <p><strong>가입일:</strong> ${userDetails.regdate}</p>
+    </div>
+    <div>
+        <h2>내가 작성한 상품</h2>
+        <c:forEach var="item" items="${userItems}">
+            <div>
+                <h3>${item.title}</h3>
+                <p>${item.content}</p>
+                <p>${item.price}</p>
+            </div>
         </c:forEach>
-        </tbody>
-    </table>
-</div>
-
-<!-- 내가 작성한 Add Item -->
-<div>
-    <h2>내가 작성한 Add Item</h2>
-    <table border="1" cellpadding="10" cellspacing="0" style="width: 100%; text-align: center;">
-        <thead>
-        <tr>
-            <th>상품명</th>
-            <th>가격</th>
-            <th>수정</th>
-            <th>삭제</th>
-        </tr>
-        </thead>
-        <tbody>
-        <c:forEach var="item" items="${myItems}">
-            <tr>
-                <td>${item.title}</td>
-                <td>${item.price}원</td>
-                <td><a href="edititem.jsp?id=${item.id}">수정</a></td>
-                <td><a href="deleteitem.do?id=${item.id}">삭제</a></td>
-            </tr>
+    </div>
+    <div>
+        <h2>내가 구독한 목록</h2>
+        <c:forEach var="subscribe" items="${userSubscribes}">
+            <div>
+                <h3>${subscribe.title}</h3>
+                <p>${subscribe.startDate} ~ ${subscribe.endDate}</p>
+                <p>${subscribe.price}</p>
+            </div>
         </c:forEach>
-        </tbody>
-    </table>
+    </div>
 </div>
-
-<!-- 내가 작성한 Add Subscribe -->
-<div>
-    <h2>내가 작성한 Add Subscribe</h2>
-    <table border="1" cellpadding="10" cellspacing="0" style="width: 100%; text-align: center;">
-        <thead>
-        <tr>
-            <th>상품명</th>
-            <th>가격</th>
-            <th>시작일</th>
-            <th>종료일</th>
-            <th>수정</th>
-            <th>삭제</th>
-        </tr>
-        </thead>
-        <tbody>
-        <c:forEach var="subscribe" items="${mySubscribes}">
-            <tr>
-                <td>${subscribe.title}</td>
-                <td>${subscribe.price}원</td>
-                <td>${subscribe.startDate}</td>
-                <td>${subscribe.endDate}</td>
-                <td><a href="editsubscribe.jsp?id=${subscribe.id}">수정</a></td>
-                <td><a href="deletesubscribe.do?id=${subscribe.id}">삭제</a></td>
-            </tr>
-        </c:forEach>
-        </tbody>
-    </table>
-</div>
-
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>

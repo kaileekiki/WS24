@@ -23,7 +23,7 @@
       <c:forEach var="item" items="${itemlist}">
         <tr>
           <td>
-                <img src="${pageContext.request.contextPath}/uploads/${item.filename}" alt="상품 이미지" style="width: 100px; height: auto;">
+            <img src="${pageContext.request.contextPath}/upload/${item.filename}" alt="상품 이미지" style="width: 100px; height: auto;">
           </td>
           <td>
             <a href="${pageContext.request.contextPath}/item/view?id=${item.id}">${item.title}</a>

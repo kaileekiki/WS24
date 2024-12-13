@@ -18,4 +18,8 @@
         SELECT * FROM Item WHERE id = #{id};
     </select>
 
+    <select id="getItemsByUserId" resultType="org.example.ws242.vo.ItemVO">
+        SELECT * FROM Item WHERE user_id = #{userId};
+    </select>
+
 </mapper>

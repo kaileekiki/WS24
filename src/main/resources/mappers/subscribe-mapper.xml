@@ -6,7 +6,8 @@
     <select id="getSubs" resultType="org.example.ws242.vo.SubscribeVO">
         SELECT * FROM Subscribe
     </select>
-    <select id="getSubscribeById" parameterType="int" resultType="org.example.ws242.vo.SubscribeVO">
-        SELECT * FROM Subscribe WHERE id = #{id};
+
+    <select id="getSubscribesByUserId" resultType="org.example.ws242.vo.SubscribeVO">
+        SELECT * FROM Subscribe WHERE user_id = #{userId};
     </select>
 </mapper>
