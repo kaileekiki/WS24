@@ -26,7 +26,7 @@
         </tr>
         </thead>
         <tbody>
-        <c:forEach items="${list}" var="u">
+        <c:forEach items="${itemlist}" var="u">
             <tr>
                 <td>${u.title}</td>
                 <td>${u.price}</td>
@@ -45,7 +45,7 @@
         </tr>
         </thead>
         <tbody>
-        <c:forEach items="" var="u">
+        <c:forEach items="${subslist}" var="u">
             <tr>
                 <td>${u.title}</td>
                 <td>${u.price}</td>

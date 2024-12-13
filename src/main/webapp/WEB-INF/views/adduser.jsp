@@ -17,6 +17,10 @@
         <input type="password" id="password" name="password" required />
     </div>
     <div>
+        <label for="username">유저이름:</label>
+        <input type="text" id="username" name="password" required />
+    </div>
+    <div>
         <button type="submit">가입하기</button>
     </div>
 </form>
