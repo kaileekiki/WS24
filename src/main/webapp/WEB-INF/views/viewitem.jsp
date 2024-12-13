@@ -20,7 +20,7 @@
 
     <tr>
         <td>상품 이미지</td>
-        <img src="${pageContext.request.contextPath}/uploads/${item.filename}" alt="상품 이미지">
+        <img src="${pageContext.request.contextPath}/resources/img/${item.filename}" alt="상품 이미지">
     </tr>
     <tr>
         <td>상품명</td>
