@@ -10,8 +10,9 @@
         password=#{password};
     </select>
 
-    <insert id="insertUser">
-        INSERT INTO User (userid, password)
-        VALUES (#{userid}, #{password});
+    <insert id="insertUser" parameterType="org.example.ws242.vo.UserVO">
+        INSERT INTO User (userid, password, username)
+        VALUES (#{userid}, #{password}, #{username});
     </insert>
+
 </mapper>
