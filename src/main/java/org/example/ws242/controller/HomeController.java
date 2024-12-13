@@ -24,6 +24,10 @@ public class HomeController {
     public String homepage() {
         return "main";
     }
+    @RequestMapping("/mypage")
+    public String mypage() {
+        return "home";
+    }
 
     @RequestMapping(value = "/home", method = RequestMethod.GET)
     public String list(Model model) {
