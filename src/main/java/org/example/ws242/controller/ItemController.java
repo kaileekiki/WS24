@@ -39,6 +39,8 @@ public class ItemController {
     public String addItem(HttpServletRequest request) {
         int sizeLimit = 15 * 1024 * 1024; // 15MB
         String realPath = request.getServletContext().getRealPath("/resources/img");
+        System.out.println("File saved at: " + realPath);
+
 
         // 디렉토리 생성
         File dir = new File(realPath);
