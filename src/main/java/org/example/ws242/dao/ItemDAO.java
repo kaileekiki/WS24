@@ -16,4 +16,9 @@ public class ItemDAO {
         List<ItemVO> list = sqlSession.selectList("Item.getItems");
         return list;
     }
+
+    public int insertItem(ItemVO item) {
+        return sqlSession.insert("Item.insertItem", item);
+    }
+
 }

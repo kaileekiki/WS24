@@ -6,6 +6,10 @@
     <select id="getItems" resultType="org.example.ws242.vo.ItemVO">
         SELECT * FROM Item
     </select>
+    <insert id="insertItem" parameterType="org.example.ws242.vo.ItemVO">
+        INSERT INTO Item (title, content, region, price, itemLink, kakao, peopleLimit, people, filename)
+        VALUES (#{title}, #{content}, #{region}, #{price}, #{itemLink}, #{kakao}, #{peopleLimit}, 0, #{filename});
+    </insert>
 
 
 </mapper>

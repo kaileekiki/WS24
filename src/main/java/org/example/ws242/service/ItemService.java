@@ -16,4 +16,9 @@ public class ItemService {
     public List<ItemVO> getItemList() {
         return itemDAO.getItemList();
     }
+
+    public int addItem(ItemVO item) {
+        return itemDAO.insertItem(item);
+    }
+
 }
