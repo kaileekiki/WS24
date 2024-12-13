@@ -6,6 +6,7 @@ import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import lombok.Getter;
 import lombok.Setter;
+import org.springframework.format.annotation.DateTimeFormat;
 
 import java.util.Date;
 @Getter
@@ -19,8 +20,12 @@ public class SubscribeVO {
     private String kakao;
     private int peopleLimit;
     private int people;
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
     private Date startDate;
+
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
     private Date endDate;
+
     @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     @JoinColumn(name = "User_Id")
     private UserVO userVO;

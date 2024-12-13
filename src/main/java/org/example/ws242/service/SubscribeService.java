@@ -16,6 +16,9 @@ public class SubscribeService {
         return subscribeDAO.getSubsList();
     }
 
+    public int addSubscribe(SubscribeVO subscribe) {
+        return subscribeDAO.insertSubscribe(subscribe);
+    }
     public SubscribeVO getSubscribeById(int id) {
         return subscribeDAO.getSubscribeById(id);
     }

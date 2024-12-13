@@ -10,4 +10,9 @@
     <select id="getSubscribesByUserId" resultType="org.example.ws242.vo.SubscribeVO">
         SELECT * FROM Subscribe WHERE user_id = #{userId};
     </select>
+    <insert id="insertSubscribe" parameterType="org.example.ws242.vo.SubscribeVO">
+        INSERT INTO Subscribe (title, region, price, kakao, peopleLimit, people, startDate, endDate, user_id)
+        VALUES (#{title}, #{region}, #{price}, #{kakao}, #{peopleLimit}, #{people}, #{startDate}, #{endDate}, #{userVO.userid});
+    </insert>
+
 </mapper>
