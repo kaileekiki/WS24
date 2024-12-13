@@ -13,9 +13,5 @@ import org.springframework.web.bind.annotation.RequestMethod;
 public class SubscribeController {
     @Autowired
     private SubscribeService subscribeService;
-    @RequestMapping(value = "/list", method = RequestMethod.GET)
-    public String SubscribeList(Model model) {
-        model.addAttribute("subscribelist", subscribeService.getSubscribeList());
-        return "main";
-    }
+
 }
