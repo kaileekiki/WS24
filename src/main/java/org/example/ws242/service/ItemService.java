@@ -9,22 +9,23 @@ import java.util.List;
 
 @Service
 public class ItemService {
-
     @Autowired
-    ItemDAO itemDAO;
+    private ItemDAO itemDAO;
 
     public List<ItemVO> getItemList() {
         return itemDAO.getItemList();
     }
 
-
     public int addItem(ItemVO item) {
         return itemDAO.insertItem(item);
     }
 
-
     public ItemVO getItemById(int id) {
-        return itemDAO.getItemById(id);  // DAO를 호출하여 아이템 조회
+        return itemDAO.getItemById(id);
     }
 
+    // Retrieve items by user ID
+    public List<ItemVO> getItemsByUserId(String userId) {
+        return itemDAO.getItemsByUserId(userId);
+    }
 }

@@ -1,7 +1,6 @@
 package org.example.ws242.dao;
 
 import org.apache.ibatis.session.SqlSession;
-import org.example.ws242.vo.ItemVO;
 import org.example.ws242.vo.SubscribeVO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -11,7 +10,7 @@ import java.util.List;
 @Repository
 public class SubscribeDAO {
     @Autowired
-    SqlSession sqlSession;
+    private SqlSession sqlSession;
 
     public List<SubscribeVO> getSubsList() {
         List<SubscribeVO> list = sqlSession.selectList("Subscribe.getSubs");
@@ -19,6 +18,11 @@ public class SubscribeDAO {
     }
 
     public SubscribeVO getSubscribeById(int id) {
-        return sqlSession.selectOne("Subscribe.getSubscribeById", id);  // SQL Mapper 호출
+        return sqlSession.selectOne("Subscribe.getSubscribeById", id);
+    }
+
+    // Fetch subscriptions by user ID
+    public List<SubscribeVO> getSubscribesByUserId(String userId) {
+        return sqlSession.selectList("Subscribe.getSubscribesByUserId", userId);
     }
 }
