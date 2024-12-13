@@ -15,4 +15,10 @@
         VALUES (#{userid}, #{password}, #{username});
     </insert>
 
+    <select id="checkId" parameterType="string" resultType="int">
+        SELECT COUNT(*)
+        FROM User
+        WHERE userid = #{id};
+    </select>
+
 </mapper>

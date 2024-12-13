@@ -13,4 +13,9 @@ public class ItemController {
     @Autowired
     private ItemService itemService;
 
+    @RequestMapping(value = "/list", method = RequestMethod.GET)
+    public String itemList(Model model) {
+        model.addAttribute("itemlist", itemService.getItemList());
+        return "itemlist";
+    }
 }

@@ -24,7 +24,21 @@ public class UserController {
     // 회원가입 처리
     @RequestMapping(value = "/addok", method = RequestMethod.POST)
     public String addUser(UserVO user) {
-        userService.addUser(user);
-        return "redirect:/login/login"; // 회원가입 후 로그인 페이지로 이동
+
+        int check = userService.checkId(user.getUserid());
+
+        if (check == 0) {
+            int result = userService.addUser(user);
+            if (result == 0) {
+                System.out.println("Adding post failed");
+                return "redirect:/user/add";
+            } else {
+                System.out.println("Post added successfully");
+                return "redirect:/login/login";
+            }
+        } else {
+            System.out.println("이미 존재하는 id 입니다.");
+            return "redirect:/user/add";
+        }
     }
 }

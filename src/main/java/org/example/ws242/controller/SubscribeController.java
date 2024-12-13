@@ -14,4 +14,9 @@ public class SubscribeController {
     @Autowired
     private SubscribeService subscribeService;
 
+    @RequestMapping(value = "/list", method = RequestMethod.GET)
+    public String subscribeList(Model model) {
+        model.addAttribute("subscribelist", subscribeService.getSubscribeList());
+        return "subslist";
+    }
 }

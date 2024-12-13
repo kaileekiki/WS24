@@ -26,7 +26,7 @@ public class HomeController {
     }
 
     @RequestMapping(value = "/home", method = RequestMethod.GET)
-    public String ItemList(Model model) {
+    public String list(Model model) {
         model.addAttribute("itemlist", itemService.getItemList());
         model.addAttribute("subscribelist", subscribeService.getSubscribeList());
         return "main";
