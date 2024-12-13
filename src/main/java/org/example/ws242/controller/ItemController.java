@@ -16,6 +16,7 @@ import org.springframework.web.multipart.MultipartFile;
 import javax.servlet.http.HttpServletRequest;
 import java.io.File;
 
+
 @Controller
 @RequestMapping(value="/item")
 public class ItemController {
@@ -27,6 +28,7 @@ public class ItemController {
         model.addAttribute("itemlist", itemService.getItemList());
         return "itemlist";
     }
+
 
     @RequestMapping(value = "/add", method = RequestMethod.GET)
     public String addItemForm() {
@@ -74,6 +76,14 @@ public class ItemController {
             return "redirect:/item/add";
         }
         return "redirect:/item/list";
+    }
+
+    @RequestMapping(value = "/view", method = RequestMethod.GET)
+    public String viewItem(@RequestParam("id") int id, Model model) {
+        // id에 해당하는 상품 정보를 가져와서 model에 담음
+        ItemVO item = itemService.getItemById(id);
+        model.addAttribute("item", item);  // 상품 상세 정보를 JSP로 전달
+        return "viewitem";  // JSP의 viewitem.jsp로 이동
     }
 
 }

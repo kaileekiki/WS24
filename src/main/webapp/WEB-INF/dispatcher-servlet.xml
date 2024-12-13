@@ -8,7 +8,7 @@
     <mvc:annotation-driven />
     <context:component-scan base-package="org.example" />
 
-    <mvc:resources mapping="/img/**" location="/resources/img/" />
+<!--    <mvc:resources mapping="/img/**" location="/resources/img/" />-->
     <bean id="loginCheckInterceptor" class="org.example.ws242.login.LoginCheckInterceptor" />
 
     <mvc:interceptors>
