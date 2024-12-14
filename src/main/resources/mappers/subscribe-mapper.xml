@@ -3,13 +3,19 @@
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="Subscribe">
+
     <select id="getSubs" resultType="org.example.ws242.vo.SubscribeVO">
         SELECT * FROM Subscribe
+    </select>
+
+    <select id="getSubscribeById" parameterType="int" resultType="org.example.ws242.vo.SubscribeVO">
+        SELECT * FROM Subscribe WHERE id = #{id};
     </select>
 
     <select id="getSubscribesByUserId" resultType="org.example.ws242.vo.SubscribeVO">
         SELECT * FROM Subscribe WHERE user_id = #{userId};
     </select>
+
     <insert id="insertSubscribe" parameterType="org.example.ws242.vo.SubscribeVO">
         INSERT INTO Subscribe (title, region, price, kakao, peopleLimit, people, startDate, endDate, user_id)
         VALUES (#{title}, #{region}, #{price}, #{kakao}, #{peopleLimit}, #{people}, #{startDate}, #{endDate}, #{userVO.userid});
