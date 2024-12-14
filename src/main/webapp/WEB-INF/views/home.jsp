@@ -12,34 +12,25 @@
 
 <div class="container mt-5">
     <!-- Display UserVO Information -->
+    <h2>내 계정 정보</h2>
     <div>
-        <h2>내 계정 정보</h2>
-        <p><strong>아이디:</strong> ${userVO.userid}</p>
-        <p><strong>이름:</strong> ${userVO.username}</p>
+        <p><strong>닉네임:</strong> ${userDetails.nickname}</p>
+        <p><strong>kakao:</strong> ${userDetails.kakao}</p>
+        <p><strong>전화번호:</strong> ${userDetails.phoneNum}</p>
+        <p><strong>사진:</strong></p>
+        <c:if test="${userDetails.filename != null}">
+            <img src="${pageContext.request.contextPath}/resources/img/${userDetails.filename}" alt="사용자 사진" width="150" />
+        </c:if>
+        <c:if test="${userDetails.filename == null}">
+            <p>사진이 없습니다.</p>
+        </c:if>
     </div>
 
     <!-- Display and Edit UserDetailVO Information -->
-    <div>
-        <h2>내 정보</h2>
-        <form method="post" action="/user/update">
-            <div>
-                <label for="nickname">닉네임:</label>
-                <input type="text" id="nickname" name="nickname" value="${userDetailVO.nickname}" required />
-            </div>
-            <div>
-                <label for="phoneNum">전화번호:</label>
-                <input type="text" id="phoneNum" name="phoneNum" value="${userDetailVO.phoneNum}" required />
-            </div>
-            <div>
-                <label for="kakao">카카오톡 ID:</label>
-                <input type="text" id="kakao" name="kakao" value="${userDetailVO.kakao}" />
-            </div>
-            <div>
-                <label for="filename">프로필 사진 파일명:</label>
-                <input type="text" id="filename" name="filename" value="${userDetailVO.filename}" />
-            </div>
-            <button type="submit" class="btn btn-primary mt-3">수정</button>
-        </form>
+
+    <div class="actions">
+        <button type="button" onclick="location.href='${pageContext.request.contextPath}/userdetail/add'">유저 디테일 등록</button>
+
     </div>
     <div>
         <h2>내가 작성한 상품</h2>
