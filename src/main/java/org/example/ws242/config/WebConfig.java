@@ -19,12 +19,14 @@ public class WebConfig implements WebMvcConfigurer {
         resolver.setSuffix(".jsp");
         return resolver;
     }
-
     @Override
     public void addResourceHandlers(ResourceHandlerRegistry registry) {
-        registry.addResourceHandler("/resources/img/**")
-                .addResourceLocations("file:/Users/ijigwang/Desktop/WS24/target/SpringCRUD-1.0-SNAPSHOT/resources/img/");
+        registry.addResourceHandler("/resources/**")
+                .addResourceLocations("file:/path/to/resources/");
     }
+
+
+
     public void addFormatters(FormatterRegistry registry) {
         registry.addFormatter(new DateFormatter("yyyy-MM-dd"));
     }
