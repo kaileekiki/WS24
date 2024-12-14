@@ -29,4 +29,12 @@ public class SubscribeDAO {
         return sqlSession.selectList("Subscribe.getSubscribesByUserId", userId);
     }
 
+    public void deleteSubscribe(int id) {
+        sqlSession.delete("Subscribe.deleteSubscribe", id);
+    }
+
+    public void updateSubscribe(SubscribeVO subscribe) {
+        sqlSession.update("Subscribe.updateSubscribe", subscribe);
+    }
+
 }

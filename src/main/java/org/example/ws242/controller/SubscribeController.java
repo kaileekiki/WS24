@@ -7,10 +7,8 @@ import org.example.ws242.vo.UserVO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.SessionAttribute;
+import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 @Controller
 @RequestMapping(value="/subscribe")
@@ -56,6 +54,27 @@ public class SubscribeController {
             System.out.println("구독 추가 실패");
         }
         return "redirect:/subscribe/list"; // 구독 목록으로 이동
+    }
+
+    @RequestMapping(value = "/delete", method = RequestMethod.GET)
+    public String deleteSubscribe(@RequestParam("id") int id, RedirectAttributes redirectAttributes) {
+        subscribeService.deleteSubscribe(id); // 삭제 처리
+        redirectAttributes.addFlashAttribute("message", "구독 상품이 성공적으로 삭제되었습니다.");
+        return "redirect:/mypage";
+    }
+
+
+    @RequestMapping(value = "/edit", method = RequestMethod.GET)
+    public String editSubscribeForm(@RequestParam("id") int id, Model model) {
+        SubscribeVO subscribe = subscribeService.getSubscribeById(id);
+        model.addAttribute("subscribe", subscribe);
+        return "editSubscribeForm"; // JSP 파일로 연결
+    }
+
+    @RequestMapping(value = "/edit", method = RequestMethod.POST)
+    public String editSubscribe(@ModelAttribute SubscribeVO subscribe) {
+        subscribeService.updateSubscribe(subscribe);
+        return "redirect:/mypage";
     }
 
 }

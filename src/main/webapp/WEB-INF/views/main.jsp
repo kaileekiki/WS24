@@ -154,6 +154,6 @@
     <button type="button" onclick="location.href='${pageContext.request.contextPath}/item/add'">공동구매 상품 등록하기</button>
     <button type="button" onclick="location.href='${pageContext.request.contextPath}/subscribe/add'">공동구독 상품 등록하기</button>
 </div>
-
+<jsp:include page="bottom.jsp"/>
 </body>
 </html>

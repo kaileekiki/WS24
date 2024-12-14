@@ -21,4 +21,16 @@
         VALUES (#{title}, #{region}, #{price}, #{kakao}, #{peopleLimit}, #{people}, #{startDate}, #{endDate}, #{userVO.userid});
     </insert>
 
+    <!-- Delete Subscribe -->
+    <delete id="deleteSubscribe" parameterType="int">
+        DELETE FROM Subscribe WHERE id = #{id};
+    </delete>
+
+    <!-- Update Subscribe -->
+    <update id="updateSubscribe" parameterType="org.example.ws242.vo.SubscribeVO">
+        UPDATE Subscribe
+        SET title = #{title}, region = #{region}, price = #{price}, kakao = #{kakao}, peopleLimit = #{peopleLimit}, people = #{people}, startDate = #{startDate}, endDate = #{endDate}
+        WHERE id = #{id};
+    </update>
+
 </mapper>

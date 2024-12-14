@@ -28,4 +28,12 @@ public class ItemService {
     public List<ItemVO> getItemsByUserId(String userId) {
         return itemDAO.getItemsByUserId(userId);
     }
+
+    public void deleteItem(int id) {
+        itemDAO.deleteItem(id);
+    }
+
+    public void updateItem(ItemVO item) {
+        itemDAO.updateItem(item);
+    }
 }
