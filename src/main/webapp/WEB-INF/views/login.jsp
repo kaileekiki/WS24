@@ -1,10 +1,3 @@
-<%--
-  Created by IntelliJ IDEA.
-  User: dongheonkim
-  Date: 24. 12. 13.
-  Time: 오전 3:26
-  To change this template use File | Settings | File Templates.
---%>
 <%@ page contentType="text/html;charset=UTF-8" isELIgnored="false" language="java" %>
 <!DOCTYPE html>
 <html lang="ko">
@@ -30,8 +23,8 @@
             border: 1px solid #E5E5E5;
             border-radius: 10px;
             box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
-            padding: 20px 30px;
-            width: 300px;
+            padding: 25px 30px;
+            width: 320px;
             text-align: center;
         }
 
@@ -44,7 +37,7 @@
         .login-container form {
             display: flex;
             flex-direction: column;
-            gap: 15px;
+            gap: 10px;
         }
 
         .login-container label {
@@ -60,6 +53,8 @@
             border: 1px solid #D4D4D4;
             border-radius: 5px;
             background-color: #FAF8F2;
+            width: 100%;
+            box-sizing: border-box;
         }
 
         .login-container button {
@@ -71,6 +66,7 @@
             font-size: 16px;
             cursor: pointer;
             transition: background-color 0.3s;
+            width: 100%;
         }
 
         .login-container button:hover {
@@ -87,7 +83,7 @@
         }
 
         .divider {
-            margin: 20px 0;
+            margin: 10px 0;
             border: 0;
             border-top: 1px solid #E5E5E5;
         }
