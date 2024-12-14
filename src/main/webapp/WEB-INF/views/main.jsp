@@ -1,7 +1,9 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page contentType="text/html;charset=UTF-8" isELIgnored="false" language="java" %>
-<html>
+<!DOCTYPE html>
+<html lang="ko">
 <head>
+    <meta charset="UTF-8">
     <title>Main</title>
     <style>
         body {
@@ -42,10 +44,15 @@
             margin-bottom: 20px;
         }
 
+        .table-container {
+            max-height: 300px; /* 테이블 최대 높이 */
+            overflow-y: auto; /* 높이를 초과하면 스크롤 활성화 */
+            margin-bottom: 20px; /* 버튼과 테이블 간 간격 */
+        }
+
         table {
             width: 100%;
             border-collapse: collapse;
-            margin-bottom: 20px;
         }
 
         th, td {
@@ -93,22 +100,24 @@
     <!-- 공동구매 Section -->
     <div class="section">
         <h3>공동구매</h3>
-        <table id="itemlist">
-            <thead>
-            <tr>
-                <th>상품</th>
-                <th>가격</th>
-            </tr>
-            </thead>
-            <tbody>
-            <c:forEach items="${itemlist}" var="u">
+        <div class="table-container">
+            <table id="itemlist">
+                <thead>
                 <tr>
-                    <td>${u.title}</td>
-                    <td>${u.price}원</td>
+                    <th>상품</th>
+                    <th>가격</th>
                 </tr>
-            </c:forEach>
-            </tbody>
-        </table>
+                </thead>
+                <tbody>
+                <c:forEach items="${itemlist}" var="u">
+                    <tr>
+                        <td>${u.title}</td>
+                        <td>${u.price}원</td>
+                    </tr>
+                </c:forEach>
+                </tbody>
+            </table>
+        </div>
         <div class="actions">
             <button type="button" onclick="location.href='${pageContext.request.contextPath}/item/list'">공동구매하러 가기</button>
         </div>
@@ -117,22 +126,24 @@
     <!-- 공동구독 Section -->
     <div class="section">
         <h3>공동구독</h3>
-        <table id="subscribelist">
-            <thead>
-            <tr>
-                <th>상품</th>
-                <th>가격</th>
-            </tr>
-            </thead>
-            <tbody>
-            <c:forEach items="${subscribelist}" var="u">
+        <div class="table-container">
+            <table id="subscribelist">
+                <thead>
                 <tr>
-                    <td>${u.title}</td>
-                    <td>${u.price}원</td>
+                    <th>상품</th>
+                    <th>가격</th>
                 </tr>
-            </c:forEach>
-            </tbody>
-        </table>
+                </thead>
+                <tbody>
+                <c:forEach items="${subscribelist}" var="u">
+                    <tr>
+                        <td>${u.title}</td>
+                        <td>${u.price}원</td>
+                    </tr>
+                </c:forEach>
+                </tbody>
+            </table>
+        </div>
         <div class="actions">
             <button type="button" onclick="location.href='${pageContext.request.contextPath}/subscribe/list'">공동구독하러 가기</button>
         </div>
