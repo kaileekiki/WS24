@@ -33,15 +33,16 @@ public class HomeController {
     }
 
     @RequestMapping("/mypage")
-    public String mypage(HttpSession session, Model model) {
-        UserVO loginUser = (UserVO) session.getAttribute("login");
-        if (loginUser == null) {
-            return "redirect:/login";
+    public String mypage(@SessionAttribute(value = "login", required = false) UserVO loggedInUser, Model model) {
+        if (loggedInUser == null) {
+            // 로그인이 안 된 경우 처리
+            System.out.println("로그인이 필요합니다.");
+            return "redirect:/login/login";
         }
 
-        model.addAttribute("userDetails", userService.getUserDetails(loginUser.getUserid()));
-        model.addAttribute("userItems", itemService.getItemsByUserId(loginUser.getUserid()));
-        model.addAttribute("userSubscribes", subscribeService.getSubscribesByUserId(loginUser.getUserid()));
+        model.addAttribute("userDetails", userService.getUserDetails(loggedInUser.getUserid()));
+        model.addAttribute("userItems", itemService.getItemsByUserId(loggedInUser.getUserid()));
+        model.addAttribute("userSubscribes", subscribeService.getSubscribesByUserId(loggedInUser.getUserid()));
 
         return "home"; // This should be the name of your JSP file.
     }

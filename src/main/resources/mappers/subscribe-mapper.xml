@@ -12,7 +12,7 @@
         SELECT * FROM Subscribe WHERE id = #{id};
     </select>
 
-    <select id="getSubscribesByUserId" resultType="org.example.ws242.vo.SubscribeVO">
+    <select id="getSubscribesByUserId" parameterType="string" resultType="org.example.ws242.vo.SubscribeVO">
         SELECT * FROM Subscribe WHERE user_id = #{userId};
     </select>
 

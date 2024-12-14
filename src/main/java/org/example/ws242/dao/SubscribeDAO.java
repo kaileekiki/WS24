@@ -28,4 +28,5 @@ public class SubscribeDAO {
     public List<SubscribeVO> getSubscribesByUserId(String userId) {
         return sqlSession.selectList("Subscribe.getSubscribesByUserId", userId);
     }
+
 }
