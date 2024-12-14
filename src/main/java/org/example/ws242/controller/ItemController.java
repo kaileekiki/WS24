@@ -45,6 +45,7 @@ public class ItemController {
         String realPath = request.getServletContext().getRealPath("/resources/img");
         System.out.println("File saved at: " + realPath);
 
+
         // 디렉토리 생성
         File dir = new File(realPath);
         if (!dir.exists()) dir.mkdirs();

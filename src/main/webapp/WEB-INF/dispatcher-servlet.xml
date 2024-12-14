@@ -13,6 +13,7 @@
 
     <!-- 정적 리소스 매핑 -->
 <!--    <mvc:resources mapping="/uploads/**" location="file:/var/uploads/" />-->
+    <mvc:resources mapping="/resources/**" location="/resources/" />
 
 
 
