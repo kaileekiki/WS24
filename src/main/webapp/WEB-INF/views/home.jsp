@@ -11,13 +11,35 @@
 <jsp:include page="top.jsp"/>
 
 <div class="container mt-5">
-    <h1>마이 페이지</h1>
+    <!-- Display UserVO Information -->
+    <div>
+        <h2>내 계정 정보</h2>
+        <p><strong>아이디:</strong> ${userVO.userid}</p>
+        <p><strong>이름:</strong> ${userVO.username}</p>
+    </div>
+
+    <!-- Display and Edit UserDetailVO Information -->
     <div>
         <h2>내 정보</h2>
-        <p><strong>아이디:</strong> ${userDetails.userid}</p>
-        <p><strong>이름:</strong> ${userDetails.username}</p>
-        <p><strong>이메일:</strong> ${userDetails.email}</p>
-        <p><strong>가입일:</strong> ${userDetails.regdate}</p>
+        <form method="post" action="/user/update">
+            <div>
+                <label for="nickname">닉네임:</label>
+                <input type="text" id="nickname" name="nickname" value="${userDetailVO.nickname}" required />
+            </div>
+            <div>
+                <label for="phoneNum">전화번호:</label>
+                <input type="text" id="phoneNum" name="phoneNum" value="${userDetailVO.phoneNum}" required />
+            </div>
+            <div>
+                <label for="kakao">카카오톡 ID:</label>
+                <input type="text" id="kakao" name="kakao" value="${userDetailVO.kakao}" />
+            </div>
+            <div>
+                <label for="filename">프로필 사진 파일명:</label>
+                <input type="text" id="filename" name="filename" value="${userDetailVO.filename}" />
+            </div>
+            <button type="submit" class="btn btn-primary mt-3">수정</button>
+        </form>
     </div>
     <div>
         <h2>내가 작성한 상품</h2>
