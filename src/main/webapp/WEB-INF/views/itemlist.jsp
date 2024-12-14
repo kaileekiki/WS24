@@ -5,6 +5,68 @@
 <head>
   <meta charset="UTF-8">
   <title>공동구매 상품 목록</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f9f9f7;
+      color: #333;
+      margin: 0;
+      padding: 20px;
+    }
+
+    h1 {
+      color: #5f4b32;
+      text-align: center;
+      margin-bottom: 20px;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 0 auto;
+      max-width: 800px; /* 테이블 너비 제한 */
+      background-color: #fff;
+      border: 1px solid #e2e2e0;
+      border-radius: 8px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      overflow: hidden;
+    }
+
+    th, td {
+      padding: 15px;
+      text-align: left;
+      border-bottom: 1px solid #e2e2e0;
+    }
+
+    th {
+      background-color: #f2f2f0;
+      color: #5f4b32;
+      font-weight: bold;
+    }
+
+    tr:hover {
+      background-color: #faf8f2;
+    }
+
+    a {
+      text-decoration: none;
+      color: #7aa87d;
+      font-weight: bold;
+    }
+
+    a:hover {
+      color: #679563;
+    }
+
+    img {
+      border-radius: 5px;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    }
+
+    tbody tr:last-child td {
+      border-bottom: none;
+    }
+  </style>
 </head>
 <body>
 <h1>공동구매 상품 목록</h1>
