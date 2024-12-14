@@ -133,39 +133,6 @@
             background-color: crimson;
         }
     </style>
-    <script>
-        // URL에서 errorMessage 파라미터를 추출하는 함수
-        function getParameterByName(name) {
-            const url = window.location.href;
-            name = name.replace(/[\[\]]/g, '\\$&');
-            const regex = new RegExp('[?&]' + name + '(=([^&#]*)|&|#|$)');
-            const results = regex.exec(url);
-            if (!results) return null;
-            if (!results[2]) return '';
-            return decodeURIComponent(results[2].replace(/\+/g, ' '));
-        }
-
-        // 에러 메시지가 있는 경우 팝업으로 표시
-        document.addEventListener('DOMContentLoaded', function () {
-            const errorMessage = getParameterByName('errorMessage');
-            if (errorMessage) {
-                alert(errorMessage);
-            }
-        });
-
-        // 삭제 확인 함수
-        function deleteItem(itemId) {
-            if (confirm("이 상품을 삭제하시겠습니까?")) {
-                location.href = `${pageContext.request.contextPath}/item/delete?id=${itemId}`;
-            }
-        }
-
-        function deleteSubscribe(subscribeId) {
-            if (confirm("이 구독 상품을 삭제하시겠습니까?")) {
-                location.href = `${pageContext.request.contextPath}/subscribe/delete?id=${subscribeId}`;
-            }
-        }
-    </script>
 </head>
 <body>
 <jsp:include page="top.jsp"/>
@@ -194,18 +161,21 @@
     <!-- 내가 작성한 상품 -->
     <h3 class="subtitle">내가 작성한 상품</h3>
     <c:forEach var="item" items="${userItems}">
-        <div class="item">
+        <div class="item" data-id="${item.id}">
             <div>
                 <h3>${item.title}</h3>
                 <p>${item.content}</p>
                 <p><strong>가격:</strong> ${item.price}원</p>
             </div>
             <div class="item-buttons">
+                <!-- Edit 버튼 -->
                 <button class="edit" onclick="location.href='${pageContext.request.contextPath}/item/edit?id=${item.id}'">Edit</button>
-                <button class="delete" onclick="deleteItem(${item.id})">Delete</button>
+                <!-- Delete 버튼 -->
+                <button class="delete" onclick="location.href='${pageContext.request.contextPath}/item/delete?id=${item.id}'">Delete</button>
             </div>
         </div>
     </c:forEach>
+
 
     <!-- 내가 작성한 구독 상품 -->
     <h3 class="subtitle">내가 작성한 구독 상품</h3>
@@ -218,12 +188,59 @@
             </div>
             <div class="subscribe-buttons">
                 <button class="edit" onclick="location.href='${pageContext.request.contextPath}/subscribe/edit?id=${subscribe.id}'">Edit</button>
-                <button class="delete" onclick="deleteSubscribe(${subscribe.id})">Delete</button>
+                <button class="delete" onclick="location.href='${pageContext.request.contextPath}/subscribe/delete?id=${subscribe.id}'">Delete</button>
             </div>
         </div>
     </c:forEach>
 </div>
 
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+<script>
+    // URL에서 errorMessage 파라미터를 추출하는 함수
+    function getParameterByName(name) {
+        const url = window.location.href;
+        name = name.replace(/[\[\]]/g, '\\$&');
+        const regex = new RegExp('[?&]' + name + '(=([^&#]*)|&|#|$)');
+        const results = regex.exec(url);
+        if (!results) return null;
+        if (!results[2]) return '';
+        return decodeURIComponent(results[2].replace(/\+/g, ' '));
+    }
+
+    // 에러 메시지가 있는 경우 팝업으로 표시
+    document.addEventListener('DOMContentLoaded', function () {
+        const errorMessage = getParameterByName('errorMessage');
+        if (errorMessage) {
+            alert(errorMessage);
+        }
+    });
+
+    <%--function deleteItem(button) {--%>
+    <%--    // 부모 요소에서 data-id 속성을 가져옴--%>
+    <%--    const itemId = button.closest('.item').getAttribute('data-id');--%>
+    <%--    console.log("Deleting item with ID:", itemId); // 디버깅용 로그--%>
+
+    <%--    if (itemId) {--%>
+    <%--        if (confirm("이 상품을 삭제하시겠습니까?")) {--%>
+    <%--            location.href = `${pageContext.request.contextPath}/item/delete?id=${itemId}`;--%>
+    <%--        }--%>
+    <%--    } else {--%>
+    <%--        alert("유효하지 않은 아이템 ID입니다.");--%>
+    <%--    }--%>
+    <%--}--%>
+
+
+    <%--function deleteSubscribe(subscribeId) {--%>
+    <%--    console.log("Deleting subscribe with ID:", subscribeId); // 디버깅용 로그--%>
+    <%--    if (confirm("이 구독 상품을 삭제하시겠습니까?")) {--%>
+    <%--        location.href = `${pageContext.request.contextPath}/subscribe/delete?id=${subscribe.id}`;--%>
+    <%--    }--%>
+
+    // Flash Attribute로 전달된 메시지 확인
+    const message = "${message}";
+    if (message) {
+        alert(message); // 메시지를 팝업으로 표시
+    }
+</script>
+<jsp:include page="bottom.jsp" />
 </body>
 </html>

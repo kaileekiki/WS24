@@ -27,4 +27,12 @@ public class SubscribeService {
     public List<SubscribeVO> getSubscribesByUserId(String userId) {
         return subscribeDAO.getSubscribesByUserId(userId);
     }
+
+    public void deleteSubscribe(int id) {
+        subscribeDAO.deleteSubscribe(id);
+    }
+
+    public void updateSubscribe(SubscribeVO subscribe) {
+        subscribeDAO.updateSubscribe(subscribe);
+    }
 }

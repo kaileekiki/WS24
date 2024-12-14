@@ -23,5 +23,17 @@
         SELECT * FROM Item WHERE user_id = #{userId};
     </select>
 
+    <!-- Delete Item -->
+    <delete id="deleteItem" parameterType="int">
+        DELETE FROM Item WHERE id = #{id};
+    </delete>
+
+    <!-- Update Item -->
+    <update id="updateItem" parameterType="org.example.ws242.vo.ItemVO">
+        UPDATE Item
+        SET title = #{title}, content = #{content}, region = #{region}, price = #{price}, itemLink = #{itemLink}, kakao = #{kakao}, peopleLimit = #{peopleLimit}, filename = #{filename}
+        WHERE id = #{id};
+    </update>
+
 
 </mapper>

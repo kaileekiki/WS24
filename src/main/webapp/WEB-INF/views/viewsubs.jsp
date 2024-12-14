@@ -80,6 +80,8 @@
     </style>
 </head>
 <body>
+<jsp:include page="top.jsp" />
+
 <h1>구독 상품 상세 정보</h1>
 
 <table>
@@ -118,6 +120,8 @@
 </table>
 
 <a href="${pageContext.request.contextPath}/subscribe/list" class="back-button">목록으로 돌아가기</a>
+
+<jsp:include page="bottom.jsp" />
 
 </body>
 </html>

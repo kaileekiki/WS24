@@ -89,6 +89,8 @@
     </style>
 </head>
 <body>
+<jsp:include page="top.jsp" />
+
 
 <h1>공동구매 상품 상세정보</h1>
 
@@ -142,6 +144,6 @@
 <div>
     <a href="${pageContext.request.contextPath}/item/list" class="back-button">상품 목록으로 돌아가기</a>
 </div>
-
+<jsp:include page="bottom.jsp" />
 </body>
 </html>

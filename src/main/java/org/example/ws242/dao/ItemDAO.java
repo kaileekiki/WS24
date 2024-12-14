@@ -59,4 +59,12 @@ public class ItemDAO {
     public List<ItemVO> getItemsByUserId(String userId) {
         return sqlSession.selectList("Item.getItemsByUserId", userId);
     }
+
+    public void deleteItem(int id) {
+        sqlSession.delete("Item.deleteItem", id);
+    }
+
+    public void updateItem(ItemVO item) {
+        sqlSession.update("Item.updateItem", item);
+    }
 }

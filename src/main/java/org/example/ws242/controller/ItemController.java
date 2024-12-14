@@ -9,7 +9,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import com.oreilly.servlet.multipart.DefaultFileRenamePolicy;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.servlet.http.HttpServletRequest;
 import java.io.File;
@@ -94,6 +94,26 @@ public class ItemController {
         ItemVO item = itemService.getItemById(id);
         model.addAttribute("item", item);  // 상품 상세 정보를 JSP로 전달
         return "viewitem";  // JSP의 viewitem.jsp로 이동
+    }
+
+    @RequestMapping(value = "/delete", method = RequestMethod.GET)
+    public String deleteItem(@RequestParam("id") int id, RedirectAttributes redirectAttributes) {
+        itemService.deleteItem(id); // 삭제 처리
+        redirectAttributes.addFlashAttribute("message", "상품이 성공적으로 삭제되었습니다.");
+        return "redirect:/mypage";
+    }
+
+    @RequestMapping(value = "/edit", method = RequestMethod.GET)
+    public String editItemForm(@RequestParam("id") int id, Model model) {
+        ItemVO item = itemService.getItemById(id);
+        model.addAttribute("item", item);
+        return "editItemForm"; // JSP 파일로 연결
+    }
+
+    @RequestMapping(value = "/edit", method = RequestMethod.POST)
+    public String editItem(@ModelAttribute ItemVO item) {
+        itemService.updateItem(item); // 서비스 호출로 수정 처리
+        return "redirect:/mypage?message=상품이 성공적으로 수정되었습니다.";
     }
 
 }
