@@ -22,8 +22,8 @@
         <input type="number" id="price" name="price" required />
     </div>
     <div>
-        <label for="kakaoLink">카카오톡 채팅방 링크:</label>
-        <input type="url" id="kakaoLink" name="kakaoLink" />
+        <label for="kakao">카카오톡 채팅방 링크:</label>
+        <input type="url" id="kakao" name="kakao" />
     </div>
     <div>
         <label for="peopleLimit">최대 인원수:</label>
@@ -47,7 +47,7 @@
 </form>
 
 <div>
-    <button type="button" onclick="location.href='/item/list'">상품 목록으로 돌아가기</button>
+    <button type="button" onclick="location.href='${pageContext.request.contextPath}/item/list'">상품 목록으로 돌아가기</button>
 </div>
 </body>
 </html>
