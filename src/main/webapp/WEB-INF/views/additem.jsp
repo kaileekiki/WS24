@@ -45,7 +45,7 @@
         <button type="submit">상품 등록</button>
     </div>
 </form>
-
+<%--//merge--%>
 <div>
     <button type="button" onclick="location.href='../item/list'">상품 목록으로 돌아가기</button>
 </div>
