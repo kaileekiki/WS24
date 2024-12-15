@@ -40,4 +40,9 @@ public class SubscribeDAO {
         sqlSession.update("Subscribe.updateSubscribe", subscribe);
     }
 
+    public List<SubscribeVO> searchSubscribesByTitle(String query) {
+        return sqlSession.selectList("Subscribe.searchSubscribesByTitle", "%" + query + "%");
+    }
+
+
 }

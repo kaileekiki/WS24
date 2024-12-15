@@ -70,4 +70,8 @@ public class ItemDAO {
     public void updateItem(ItemVO item) {
         sqlSession.update("Item.updateItem", item);
     }
+
+    public List<ItemVO> searchItemsByTitle(String query) {
+        return sqlSession.selectList("Item.searchItemsByTitle", "%" + query + "%");
+    }
 }

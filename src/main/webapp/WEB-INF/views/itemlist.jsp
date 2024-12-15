@@ -3,128 +3,166 @@
 <!DOCTYPE html>
 <html lang="ko">
 <head>
-  <meta charset="UTF-8">
-  <title>공동구매 상품 목록</title>
-  <style>
-    body {
-      font-family: Arial, sans-serif;
-      background-color: #f9f9f7;
-      color: #333;
-      margin: 0;
-      padding: 20px;
-    }
+    <meta charset="UTF-8">
+    <title>공동구매 상품 목록</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f9f9f7;
+            color: #333;
+            margin: 0;
+            padding: 20px;
+        }
 
-    h1 {
-      color: #5f4b32;
-      text-align: center;
-      margin-bottom: 30px;
-      font-size: 28px;
-      font-weight: bold;
-    }
+        h1 {
+            color: #5f4b32;
+            text-align: center;
+            margin-bottom: 30px;
+            font-size: 28px;
+            font-weight: bold;
+        }
 
-    table {
-      width: 100%;
-      border-collapse: collapse;
-      margin: 0 auto;
-      max-width: 900px; /* 테이블 너비 제한 */
-      background-color: #fff;
-      border: 1px solid #e2e2e0;
-      border-radius: 10px;
-      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-      overflow: hidden;
-    }
+        form.search-form {
+            max-width: 600px;
+            margin: 0 auto 30px;
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+        }
 
-    th, td {
-      padding: 15px;
-      text-align: center;
-      border-bottom: 1px solid #e2e2e0;
-    }
+        form.search-form input[type="text"] {
+            width: 70%;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-size: 14px;
+        }
 
-    th {
-      background-color: #f4ede3;
-      color: #5f4b32;
-      font-weight: bold;
-      font-size: 16px;
-    }
+        form.search-form button {
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            background-color: #7aa87d;
+            color: white;
+            font-size: 14px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
 
-    td {
-      font-size: 14px;
-      color: #555;
-    }
+        form.search-form button:hover {
+            background-color: #679563;
+        }
 
-    tr:hover {
-      background-color: #faf8f2;
-    }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 0 auto;
+            max-width: 900px;
+            background-color: #fff;
+            border: 1px solid #e2e2e0;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+        }
 
-    a {
-      text-decoration: none;
-      color: #7aa87d;
-      font-weight: bold;
-      transition: color 0.3s;
-    }
+        th, td {
+            padding: 15px;
+            text-align: center;
+            border-bottom: 1px solid #e2e2e0;
+        }
 
-    a:hover {
-      color: #679563;
-    }
+        th {
+            background-color: #f4ede3;
+            color: #5f4b32;
+            font-weight: bold;
+            font-size: 16px;
+        }
 
-    img {
-      border-radius: 8px;
-      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-      width: 80px;
-      height: auto;
-    }
+        td {
+            font-size: 14px;
+            color: #555;
+        }
 
-    tbody tr:last-child td {
-      border-bottom: none;
-    }
+        tr:hover {
+            background-color: #faf8f2;
+        }
 
-    .btn-container {
-      text-align: center;
-      margin-top: 20px;
-    }
+        a {
+            text-decoration: none;
+            color: #7aa87d;
+            font-weight: bold;
+            transition: color 0.3s;
+        }
 
-    .btn-container a {
-      display: inline-block;
-      padding: 10px 20px;
-      margin: 0 10px;
-      background-color: #7aa87d;
-      color: #fff;
-      text-decoration: none;
-      border-radius: 5px;
-      font-size: 14px;
-      transition: background-color 0.3s;
-    }
+        a:hover {
+            color: #679563;
+        }
 
-    .btn-container a:hover {
-      background-color: #679563;
-    }
-  </style>
+        img {
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            width: 80px;
+            height: auto;
+        }
+
+        tbody tr:last-child td {
+            border-bottom: none;
+        }
+
+        .btn-container {
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        .btn-container a {
+            display: inline-block;
+            padding: 10px 20px;
+            margin: 0 10px;
+            background-color: #7aa87d;
+            color: #fff;
+            text-decoration: none;
+            border-radius: 5px;
+            font-size: 14px;
+            transition: background-color 0.3s;
+        }
+
+        .btn-container a:hover {
+            background-color: #679563;
+        }
+    </style>
 </head>
 <body>
 <jsp:include page="top.jsp" />
 
 <h1>공동구매 상품 목록</h1>
+
+<!-- Search Form -->
+<form class="search-form" method="get" action="${pageContext.request.contextPath}/item/search">
+    <input type="text" name="query" placeholder="상품명을 검색하세요" value="${param.query}" />
+    <button type="submit">검색</button>
+</form>
+
 <table>
-  <thead>
-  <tr>
-    <th>사진</th>
-    <th>상품명</th>
-    <th>가격</th>
-  </tr>
-  </thead>
-  <tbody>
-  <c:forEach var="item" items="${itemlist}">
+    <thead>
     <tr>
-      <td><img src="${pageContext.request.contextPath}/resources/img/${item.filename}" alt="이미지" /></td>
-      <td><a href="${pageContext.request.contextPath}/item/view?id=${item.id}">${item.title}</a></td>
-      <td>${item.price}원</td>
+        <th>사진</th>
+        <th>상품명</th>
+        <th>가격</th>
     </tr>
-  </c:forEach>
-  </tbody>
+    </thead>
+    <tbody>
+    <c:forEach var="item" items="${itemlist}">
+        <tr>
+            <td><img src="${pageContext.request.contextPath}/resources/img/${item.filename}" alt="이미지" /></td>
+            <td><a href="${pageContext.request.contextPath}/item/view?id=${item.id}">${item.title}</a></td>
+            <td>${item.price}원</td>
+        </tr>
+    </c:forEach>
+    </tbody>
 </table>
 
 <div class="btn-container">
-  <a href="${pageContext.request.contextPath}/item/add">상품 추가하기</a>
+    <a href="${pageContext.request.contextPath}/item/add">상품 추가하기</a>
 </div>
 
 <jsp:include page="bottom.jsp" />

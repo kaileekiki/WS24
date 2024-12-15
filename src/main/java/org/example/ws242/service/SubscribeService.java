@@ -38,4 +38,9 @@ public class SubscribeService {
     public void updateSubscribe(SubscribeVO subscribe) {
         subscribeDAO.updateSubscribe(subscribe);
     }
+
+    public List<SubscribeVO> searchSubscribesByTitle(String query) {
+        return subscribeDAO.searchSubscribesByTitle(query);
+    }
+
 }

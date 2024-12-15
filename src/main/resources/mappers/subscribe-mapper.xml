@@ -70,4 +70,11 @@
         WHERE id = #{id};
     </update>
 
+    <select id="searchSubscribesByTitle" parameterType="string" resultType="org.example.ws242.vo.SubscribeVO">
+        SELECT *
+        FROM Subscribe
+        WHERE title LIKE #{query}
+    </select>
+
+
 </mapper>
