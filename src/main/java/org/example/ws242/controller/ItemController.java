@@ -110,39 +110,41 @@ public class ItemController {
         return "editItemForm"; // JSP 파일로 연결
     }
 
-    @RequestMapping(value = "/editok", method = RequestMethod.POST)
-    public String editItem(HttpServletRequest request, @SessionAttribute(value = "login", required = false) UserVO loggedInUser) {
-        if (loggedInUser == null) {
-            // 로그인이 안 된 경우 처리
-            System.out.println("로그인이 필요합니다.");
-            return "redirect:/login/login";
-        }
 
-        int sizeLimit = 15 * 1024 * 1024; // 15MB
+    @RequestMapping(value = "/edit", method = RequestMethod.POST)
+    public String editItem(HttpServletRequest request, @SessionAttribute("login") UserVO loggedInUser) {
         String realPath = request.getServletContext().getRealPath("/resources/img");
-        System.out.println("File saved at: " + realPath);
+        int sizeLimit = 15 * 1024 * 1024; // 15 MB
 
-
-        // 디렉토리 생성
+        // Create directory if it doesn't exist
         File dir = new File(realPath);
         if (!dir.exists()) dir.mkdirs();
 
         try {
-            com.oreilly.servlet.MultipartRequest multipartRequest = new MultipartRequest(
-                    request, realPath, sizeLimit, "utf-8", new DefaultFileRenamePolicy());
+            // Process the multipart request
+            MultipartRequest multipartRequest = new MultipartRequest(
+                    request,
+                    realPath,
+                    sizeLimit,
+                    "utf-8",
+                    new DefaultFileRenamePolicy()
+            );
 
-            // Form 데이터 가져오기
+            // Extract form data
+            int id = Integer.parseInt(multipartRequest.getParameter("id"));
             String title = multipartRequest.getParameter("title");
             String content = multipartRequest.getParameter("content");
             String region = multipartRequest.getParameter("region");
             float price = Float.parseFloat(multipartRequest.getParameter("price"));
             String itemLink = multipartRequest.getParameter("itemLink");
-            String kakao = multipartRequest.getParameter("kakaoLink");
+            String kakao = multipartRequest.getParameter("kakao");
             int peopleLimit = Integer.parseInt(multipartRequest.getParameter("peopleLimit"));
             String filename = multipartRequest.getFilesystemName("filename");
 
-            // ItemVO 객체 생성
-            ItemVO item = new ItemVO();
+            // Fetch the existing item
+            ItemVO item = itemService.getItemById(id);
+
+            // Update fields
             item.setTitle(title);
             item.setContent(content);
             item.setRegion(region);
@@ -150,17 +152,20 @@ public class ItemController {
             item.setItemLink(itemLink);
             item.setKakao(kakao);
             item.setPeopleLimit(peopleLimit);
-            item.setFilename(filename);
 
-            // 세션에서 가져온 user_id 설정
-            item.setUserVO(loggedInUser);
+            // Update the filename only if a new file is uploaded
+            if (filename != null) {
+                item.setFilename(filename);
+            }
 
-            // DB에 저장
-            itemService.addItem(item);
+            // Save changes to the database
+            itemService.updateItem(item);
+
         } catch (Exception e) {
             e.printStackTrace();
-            return "redirect:/mypage";
+            return "redirect:/item/edit?id=" + request.getParameter("id");
         }
+
         return "redirect:/mypage";
     }
 
