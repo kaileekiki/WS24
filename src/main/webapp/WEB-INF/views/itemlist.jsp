@@ -164,7 +164,7 @@
 <div class="btn-container">
     <a href="${pageContext.request.contextPath}/item/add">상품 추가하기</a>
 </div>
-
+<%--검색기능 추가--%>
 <jsp:include page="bottom.jsp" />
 </body>
 </html>
