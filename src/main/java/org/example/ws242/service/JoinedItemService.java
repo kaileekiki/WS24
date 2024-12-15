@@ -26,5 +26,10 @@ public class JoinedItemService  {
         return joinedItemDAO.getJoinItemById(userid, itemid);
     }
 
+    public List<JoinedItemVO> getJoinedItemsByUserId(String userid) {
+        return joinedItemDAO.getJoinedItemsByUserId(userid);
+    }
+
+
 
 }

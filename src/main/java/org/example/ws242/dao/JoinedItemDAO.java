@@ -24,6 +24,11 @@ public class JoinedItemDAO {
     }
 
 
+    public List<JoinedItemVO> getJoinedItemsByUserId(String userid) {
+        return sqlSession.selectList("joinitem.getJoinedItemsByUserId", userid);
+    }
+
+
 
     public int insertJoinedItem(JoinedItemVO join) {
         return sqlSession.insert("joinitem.insertJoinedItem", join);

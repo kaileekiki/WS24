@@ -1,17 +1,19 @@
 package org.example.ws242.controller;
 
-import org.example.ws242.service.ItemService;
-import org.example.ws242.service.SubscribeService;
-import org.example.ws242.service.UserService;
+import org.example.ws242.service.*;
+import org.example.ws242.vo.JoinedItemVO;
+import org.example.ws242.vo.JoinedSubVO;
 import org.example.ws242.vo.UserVO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.SessionAttribute;
 
 import javax.servlet.http.HttpSession;
+import java.util.List;
 
 @Controller
 public class HomeController {
@@ -21,6 +23,11 @@ public class HomeController {
     private SubscribeService subscribeService;
     @Autowired
     private UserService userService;
+    @Autowired
+    private JoinedItemService joinedItemService;
+
+    @Autowired
+    private JoinedSubscribeService joinedSubscribeService;
 
     @RequestMapping("/")
     public String home() {
@@ -52,5 +59,21 @@ public class HomeController {
         model.addAttribute("itemlist", itemService.getItemList());
         model.addAttribute("subscribelist", subscribeService.getSubscribeList());
         return "main";
+    }
+
+    @GetMapping("/wishlist")
+    public String getWishlist(Model model, @SessionAttribute(value = "login", required = false) UserVO loggedInUser) {
+        // 예시 사용자 ID로 데이터 가져오기 (실제 구현 시 사용자 ID를 동적으로 받아와야 함)
+        String userId = "testuser";
+
+        List<JoinedItemVO> joinedItems = joinedItemService.getJoinedItemsByUserId(loggedInUser.getUserid());
+        List<JoinedSubVO> joinedSubs = joinedSubscribeService.getAllJoinedSubscribes(loggedInUser.getUserid());
+        // 모델에 데이터를 추가
+        model.addAttribute("joinedItems", joinedItems);
+        model.addAttribute("joinedSubs", joinedSubs);
+
+
+        // JSP 페이지 반환
+        return "wishlist";
     }
 }

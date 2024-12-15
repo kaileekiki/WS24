@@ -8,6 +8,8 @@ import org.example.ws242.vo.JoinedSubVO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class JoinedSubscribeService {
 
@@ -20,6 +22,9 @@ public class JoinedSubscribeService {
 
     public JoinedSubVO getJoinSubscribeById(String userid, int subscribeid) {
         return joinedSubscribeDAO.getJoinSubscribeById(userid, subscribeid);
+    }
+    public List<JoinedSubVO> getAllJoinedSubscribes(String userId) {
+        return joinedSubscribeDAO.getJoinedSubscribesByUserId(userId);
     }
 
 }
