@@ -68,7 +68,7 @@
 <body>
 <div class="container">
     <h2>상품 수정</h2>
-    <form method="post" action="${pageContext.request.contextPath}/item/editok" enctype="multipart/form-data">
+    <form method="post" action="${pageContext.request.contextPath}/item/edit" enctype="multipart/form-data">
         <input type="hidden" name="id" value="${item.id}" />
         <div class="mb-3">
             <label for="title">Title:</label>
@@ -100,7 +100,8 @@
         </div>
         <div class="mb-3">
             <label for="filename">Filename:</label>
-            <input type="file" id="filename" name="filename" value="${item.filename}" />
+            <input type="file" id="filename" name="filename" />
+            <p>Current Image: <img src="${pageContext.request.contextPath}/resources/img/${item.filename}" alt="Current Image" width="100" /></p>
         </div>
         <button type="submit">Update</button>
     </form>
