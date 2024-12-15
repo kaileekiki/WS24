@@ -140,17 +140,17 @@
     </tr>
     </tbody>
 </table>
-
-<div>
-    <a href="${pageContext.request.contextPath}/item/list" class="back-button">상품 목록으로 돌아가기</a>
-</div>
-
 <div>
     <form action="${pageContext.request.contextPath}/joinitem/add" method="post">
         <input type="hidden" name="itemId" value="${item.id}" />
         <button type="submit" class="back-button">찜</button>
     </form>
 </div>
+<div>
+    <a href="${pageContext.request.contextPath}/item/list" class="back-button">상품 목록으로 돌아가기</a>
+</div>
+
+
 
 <script>
     // URL에서 errorMessage 파라미터를 추출하는 함수

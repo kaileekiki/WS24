@@ -42,7 +42,7 @@
                     <a class="nav-link" href="${pageContext.request.contextPath}/mypage">Home</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="${pageContext.request.contextPath}/favorites">Favorites</a>
+                    <a class="nav-link" href="${pageContext.request.contextPath}/wishlist">Wishlist</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="${pageContext.request.contextPath}/login/logout">Logout</a>

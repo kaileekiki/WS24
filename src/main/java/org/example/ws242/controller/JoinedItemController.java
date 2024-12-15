@@ -47,8 +47,8 @@ public class JoinedItemController {
         //중복신청 회피
         JoinedItemVO tryfirst =  joinedItemService.getJoinItemById(loggedInUser.getUserid(),itemId);
         if (tryfirst != null) {
-            System.out.println("이미 신청한 상품입니다. 마이페이지에서 삭제하실 수 있습니다.");
-            model.addAttribute("errorMessage", "이미 신청한 상품입니다. 마이페이지에서 삭제하실 수 있습니다.");
+            System.out.println("이미 신청한 상품입니다. wishlist에서 확인하실 수 있습니다.");
+            model.addAttribute("errorMessage", "이미 신청한 상품입니다. wishlist에서 확인하실 수 있습니다.");
             return "redirect:/item/view?id=" + item.getId();
         }
         if(item.getPeopleLimit()<=item.getPeople()){

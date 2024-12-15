@@ -50,8 +50,8 @@ public class JoinedSubsController {
         //중복신청 회피
         JoinedSubVO tryfirst =  joinedSubscribeService.getJoinSubscribeById(loggedInUser.getUserid(),subsId);
         if (tryfirst != null) {
-            System.out.println("이미 신청한 상품입니다. 마이페이지에서 삭제하실 수 있습니다.");
-            model.addAttribute("errorMessage", "이미 신청한 상품입니다. 마이페이지에서 삭제하실 수 있습니다.");
+            System.out.println("이미 신청한 상품입니다. wishlist에서 확인하실 수 있습니다.");
+            model.addAttribute("errorMessage", "이미 신청한 상품입니다. wishlist에서 확인하실 수 있습니다.");
             return "redirect:/subscribe/view?id=" + subs.getId();
         }
         if(subs.getPeopleLimit()<=subs.getPeople()){

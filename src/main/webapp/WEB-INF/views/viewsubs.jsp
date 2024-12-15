@@ -118,14 +118,14 @@
         <td>${subscribe.regdate}</td>
     </tr>
 </table>
-
-<a href="${pageContext.request.contextPath}/subscribe/list" class="back-button">목록으로 돌아가기</a>
 <div>
     <form action="${pageContext.request.contextPath}/joinsubs/add" method="post">
         <input type="hidden" name="subsId" value="${subscribe.id}" />
         <button type="submit" class="back-button">찜</button>
     </form>
 </div>
+<a href="${pageContext.request.contextPath}/subscribe/list" class="back-button">목록으로 돌아가기</a>
+
 <script>
     // URL에서 errorMessage 파라미터를 추출하는 함수
     function getParameterByName(name) {
