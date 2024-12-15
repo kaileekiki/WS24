@@ -15,12 +15,60 @@
             padding: 0;
         }
 
-        h2 {
-            color: #5f4b32;
+        .page-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
             margin-bottom: 30px;
-            text-align: center;
+        }
+
+        .page-header h2 {
+            color: #5f4b32;
             font-size: 28px;
             font-weight: bold;
+            margin: 0;
+        }
+
+        .header-buttons {
+            display: flex;
+            gap: 10px;
+        }
+
+        .header-buttons button {
+            border: none;
+            border-radius: 5px;
+            padding: 10px 15px;
+            cursor: pointer;
+            font-size: 14px;
+            transition: background-color 0.3s;
+        }
+
+        .wishlist-button {
+            background-color: #ff6f61; /* 주홍색 */
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 10px 15px;
+            border-radius: 5px;
+            font-weight: bold;
+        }
+
+        .wishlist-button:hover {
+            background-color: #e65b4e;
+        }
+
+        .wishlist-button i {
+            margin-right: 5px;
+        }
+
+        .user-detail-button {
+            background-color: #7aa87d;
+            color: white;
+        }
+
+        .user-detail-button:hover {
+            background-color: #679563;
         }
 
         .container {
@@ -52,27 +100,6 @@
             margin: 20px auto;
             border-radius: 10px;
             box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-        }
-
-        .actions {
-            text-align: center;
-            margin-bottom: 40px;
-        }
-
-        .actions button {
-            background-color: #7aa87d;
-            color: #fff;
-            border: none;
-            border-radius: 5px;
-            padding: 10px 20px;
-            cursor: pointer;
-            font-size: 16px;
-            margin: 10px;
-            transition: background-color 0.3s;
-        }
-
-        .actions button:hover {
-            background-color: #679563;
         }
 
         .item, .subscribe {
@@ -138,10 +165,22 @@
 <jsp:include page="top.jsp"/>
 
 <div class="container">
+    <!-- Page Header -->
+    <div class="page-header">
+        <h2>My Page</h2>
+        <div class="header-buttons">
+            <!-- Wishlist Button -->
+            <button type="button" class="wishlist-button" onclick="location.href='${pageContext.request.contextPath}/wishlist'">
+                <i class="fas fa-heart"></i> 찜 페이지로 이동
+            </button>
+            <!-- User Detail Register Button -->
+            <button type="button" class="user-detail-button" onclick="location.href='${pageContext.request.contextPath}/userdetail/add'">유저 디테일 등록</button>
+        </div>
+    </div>
+
     <!-- 사용자 정보 -->
-    <h2>마이 페이지</h2>
     <div class="account-info">
-        <h3 class="subtitle text-center">내 계정 정보</h3>
+        <h3 class="subtitle text-center">My Information</h3>
         <p><strong>닉네임:</strong> ${userDetails.nickname}</p>
         <p><strong>카카오톡:</strong> ${userDetails.kakao}</p>
         <p><strong>전화번호:</strong> ${userDetails.phoneNum}</p>
@@ -151,11 +190,6 @@
         <c:if test="${userDetails.filename == null}">
             <p>사진이 없습니다.</p>
         </c:if>
-    </div>
-
-    <!-- 유저 디테일 등록 버튼 -->
-    <div class="actions">
-        <button type="button" onclick="location.href='${pageContext.request.contextPath}/userdetail/add'">유저 디테일 등록</button>
     </div>
 
     <!-- 내가 작성한 상품 -->
@@ -169,14 +203,11 @@
             </div>
             <div class="item-buttons">
                 <button class="view" onclick="location.href='${pageContext.request.contextPath}/item/view?id=${item.id}'">View</button>
-                <!-- Edit 버튼 -->
                 <button class="edit" onclick="location.href='${pageContext.request.contextPath}/item/edit?id=${item.id}'">Edit</button>
-                <!-- Delete 버튼 -->
                 <button class="delete" onclick="location.href='${pageContext.request.contextPath}/item/delete?id=${item.id}'">Delete</button>
             </div>
         </div>
     </c:forEach>
-
 
     <!-- 내가 작성한 구독 상품 -->
     <h3 class="subtitle">내가 작성한 구독 상품</h3>
@@ -196,53 +227,7 @@
     </c:forEach>
 </div>
 
-<script>
-    // URL에서 errorMessage 파라미터를 추출하는 함수
-    function getParameterByName(name) {
-        const url = window.location.href;
-        name = name.replace(/[\[\]]/g, '\\$&');
-        const regex = new RegExp('[?&]' + name + '(=([^&#]*)|&|#|$)');
-        const results = regex.exec(url);
-        if (!results) return null;
-        if (!results[2]) return '';
-        return decodeURIComponent(results[2].replace(/\+/g, ' '));
-    }
-
-    // 에러 메시지가 있는 경우 팝업으로 표시
-    document.addEventListener('DOMContentLoaded', function () {
-        const errorMessage = getParameterByName('errorMessage');
-        if (errorMessage) {
-            alert(errorMessage);
-        }
-    });
-
-    <%--function deleteItem(button) {--%>
-    <%--    // 부모 요소에서 data-id 속성을 가져옴--%>
-    <%--    const itemId = button.closest('.item').getAttribute('data-id');--%>
-    <%--    console.log("Deleting item with ID:", itemId); // 디버깅용 로그--%>
-
-    <%--    if (itemId) {--%>
-    <%--        if (confirm("이 상품을 삭제하시겠습니까?")) {--%>
-    <%--            location.href = `${pageContext.request.contextPath}/item/delete?id=${itemId}`;--%>
-    <%--        }--%>
-    <%--    } else {--%>
-    <%--        alert("유효하지 않은 아이템 ID입니다.");--%>
-    <%--    }--%>
-    <%--}--%>
-
-
-    <%--function deleteSubscribe(subscribeId) {--%>
-    <%--    console.log("Deleting subscribe with ID:", subscribeId); // 디버깅용 로그--%>
-    <%--    if (confirm("이 구독 상품을 삭제하시겠습니까?")) {--%>
-    <%--        location.href = `${pageContext.request.contextPath}/subscribe/delete?id=${subscribe.id}`;--%>
-    <%--    }--%>
-
-    // Flash Attribute로 전달된 메시지 확인
-    const message = "${message}";
-    if (message) {
-        alert(message); // 메시지를 팝업으로 표시
-    }
-</script>
-<jsp:include page="bottom.jsp" />
+<script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+<jsp:include page="bottom.jsp"/>
 </body>
 </html>
