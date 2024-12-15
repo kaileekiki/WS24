@@ -39,4 +39,8 @@ public class ItemService {
     public void updateItem(ItemVO item) {
         itemDAO.updateItem(item);
     }
+
+    public List<ItemVO> searchItemsByTitle(String query) {
+        return itemDAO.searchItemsByTitle(query);
+    }
 }

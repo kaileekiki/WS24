@@ -22,11 +22,42 @@
             font-weight: bold;
         }
 
+        form.search-form {
+            max-width: 600px;
+            margin: 0 auto 30px;
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+        }
+
+        form.search-form input[type="text"] {
+            width: 70%;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-size: 14px;
+        }
+
+        form.search-form button {
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            background-color: #7aa87d;
+            color: white;
+            font-size: 14px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        form.search-form button:hover {
+            background-color: #679563;
+        }
+
         table {
             width: 100%;
             border-collapse: collapse;
             margin: 0 auto;
-            max-width: 900px; /* 테이블 너비 제한 */
+            max-width: 900px;
             background-color: #fff;
             border: 1px solid #e2e2e0;
             border-radius: 10px;
@@ -97,6 +128,13 @@
 <jsp:include page="top.jsp" />
 
 <h1>공동구독 상품 목록</h1>
+
+<!-- Search Form -->
+<form class="search-form" method="get" action="${pageContext.request.contextPath}/subscribe/search">
+    <input type="text" name="query" placeholder="상품명을 검색하세요" value="${param.query}" />
+    <button type="submit">검색</button>
+</form>
+
 <table>
     <thead>
     <tr>
@@ -127,6 +165,5 @@
 </div>
 
 <jsp:include page="bottom.jsp" />
-
 </body>
 </html>

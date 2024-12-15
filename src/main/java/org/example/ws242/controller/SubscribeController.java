@@ -10,6 +10,8 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import java.util.List;
+
 @Controller
 @RequestMapping(value="/subscribe")
 public class SubscribeController {
@@ -76,5 +78,15 @@ public class SubscribeController {
         subscribeService.updateSubscribe(subscribe);
         return "redirect:/mypage";
     }
+
+    @RequestMapping(value = "/search", method = RequestMethod.GET)
+    public String searchSubscribes(@RequestParam("query") String query, Model model) {
+        // Get the list of subscriptions matching the query
+        List<SubscribeVO> subscribeList = subscribeService.searchSubscribesByTitle(query);
+        model.addAttribute("subscribelist", subscribeList);
+        model.addAttribute("query", query); // Keep the search query for display
+        return "subslist";
+    }
+
 
 }

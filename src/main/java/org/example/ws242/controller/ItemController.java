@@ -13,6 +13,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.servlet.http.HttpServletRequest;
 import java.io.File;
+import java.util.List;
 
 
 @Controller
@@ -167,6 +168,15 @@ public class ItemController {
         }
 
         return "redirect:/mypage";
+    }
+
+    @RequestMapping(value = "/search", method = RequestMethod.GET)
+    public String searchItems(@RequestParam("query") String query, Model model) {
+        // Get the list of items matching the query
+        List<ItemVO> itemList = itemService.searchItemsByTitle(query);
+        model.addAttribute("itemlist", itemList);
+        model.addAttribute("query", query); // Keep the search query for display
+        return "itemlist";
     }
 
 }
