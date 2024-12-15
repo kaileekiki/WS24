@@ -168,6 +168,7 @@
                 <p><strong>가격:</strong> ${item.price}원</p>
             </div>
             <div class="item-buttons">
+                <button class="view" onclick="location.href='${pageContext.request.contextPath}/item/view?id=${item.id}'">View</button>
                 <!-- Edit 버튼 -->
                 <button class="edit" onclick="location.href='${pageContext.request.contextPath}/item/edit?id=${item.id}'">Edit</button>
                 <!-- Delete 버튼 -->
@@ -187,6 +188,7 @@
                 <p><strong>가격:</strong> ${subscribe.price}원</p>
             </div>
             <div class="subscribe-buttons">
+                <button class="view" onclick="location.href='${pageContext.request.contextPath}/subscribe/view?id=${subscribe.id}'">View</button>
                 <button class="edit" onclick="location.href='${pageContext.request.contextPath}/subscribe/edit?id=${subscribe.id}'">Edit</button>
                 <button class="delete" onclick="location.href='${pageContext.request.contextPath}/subscribe/delete?id=${subscribe.id}'">Delete</button>
             </div>
