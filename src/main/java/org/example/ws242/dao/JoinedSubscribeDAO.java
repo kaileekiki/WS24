@@ -25,4 +25,8 @@ public class JoinedSubscribeDAO {
     public int insertJoinedSubscribe(JoinedSubVO join) {
         return sqlSession.insert("joinsubscribe.insertJoinedSubscribe", join);
     }
+
+    public List<JoinedSubVO> getJoinedSubscribesByUserId(String userId) {
+        return sqlSession.selectList("joinsubscribe.getJoinedSubscribesByUserId", userId);
+    }
 }

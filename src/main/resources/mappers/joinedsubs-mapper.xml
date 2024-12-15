@@ -12,4 +12,28 @@
         SELECT * FROM JoinedSub WHERE user_id = #{userid} AND subscribe_id = #{subscribeid};
     </select>
 
+    <select id="getJoinedSubscribesByUserId" parameterType="string" resultMap="JoinedSubResultMap">
+        SELECT js.id AS id, js.user_id AS userid, js.subscribe_id AS subscribeid,
+        u.userid AS user_userid, u.username AS user_username,
+        s.id AS subscribe_id, s.title AS subscribe_title, s.region AS subscribe_region, s.price AS subscribe_price
+        FROM JoinedSub js
+        JOIN User u ON js.user_id = u.userid
+        JOIN Subscribe s ON js.subscribe_id = s.id
+        WHERE js.user_id = #{userid};
+    </select>
+
+    <!-- ResultMap for JoinedSub -->
+    <resultMap id="JoinedSubResultMap" type="org.example.ws242.vo.JoinedSubVO">
+        <id property="id" column="id"/>
+        <association property="userVO" javaType="org.example.ws242.vo.UserVO">
+            <id property="userid" column="user_userid"/>
+            <result property="username" column="user_username"/>
+        </association>
+        <association property="subscribeVO" javaType="org.example.ws242.vo.SubscribeVO">
+            <id property="id" column="subscribe_id"/>
+            <result property="title" column="subscribe_title"/>
+            <result property="region" column="subscribe_region"/>
+            <result property="price" column="subscribe_price"/>
+        </association>
+    </resultMap>
 </mapper>

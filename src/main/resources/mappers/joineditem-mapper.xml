@@ -11,4 +11,27 @@
         SELECT * FROM JoinedItem WHERE user_id = #{userid} AND item_id = #{itemid};
     </select>
 
+    <select id="getJoinedItemsByUserId" parameterType="string" resultMap="JoinedItemResultMap">
+        SELECT ji.id AS id, ji.user_id AS userid, ji.item_id AS itemid,
+        u.userid AS user_userid, u.username AS user_username,
+        i.id AS item_id, i.title AS item_title, i.price AS item_price, i.region AS item_region
+        FROM JoinedItem ji
+        JOIN User u ON ji.user_id = u.userid
+        JOIN Item i ON ji.item_id = i.id
+        WHERE ji.user_id = #{userid};
+    </select>
+
+    <resultMap id="JoinedItemResultMap" type="org.example.ws242.vo.JoinedItemVO">
+        <id property="id" column="id"/>
+        <association property="userVO" javaType="org.example.ws242.vo.UserVO">
+            <id property="userid" column="user_userid"/>
+            <result property="username" column="user_username"/>
+        </association>
+        <association property="itemVO" javaType="org.example.ws242.vo.ItemVO">
+            <id property="id" column="item_id"/>
+            <result property="title" column="item_title"/>
+            <result property="price" column="item_price"/>
+            <result property="region" column="item_region"/>
+        </association>
+    </resultMap>
 </mapper>
