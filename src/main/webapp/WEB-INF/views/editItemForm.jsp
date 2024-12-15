@@ -68,7 +68,7 @@
 <body>
 <div class="container">
     <h2>상품 수정</h2>
-    <form method="post" action="${pageContext.request.contextPath}/item/editok">
+    <form method="post" action="${pageContext.request.contextPath}/item/editok" enctype="multipart/form-data">
         <input type="hidden" name="id" value="${item.id}" />
         <div class="mb-3">
             <label for="title">Title:</label>

@@ -23,6 +23,8 @@ public class JoinedItemDAO {
         return sqlSession.selectOne("getJoinItemById", params);
     }
 
+
+
     public int insertJoinedItem(JoinedItemVO join) {
         return sqlSession.insert("joinitem.insertJoinedItem", join);
     }

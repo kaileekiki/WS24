@@ -68,4 +68,6 @@ public class JoinedItemController {
 
         return "redirect:/item/view?id=" + item.getId();
     }
+
+
 }
