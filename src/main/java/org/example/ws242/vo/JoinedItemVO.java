@@ -20,3 +20,5 @@ public class JoinedItemVO {
     @JoinColumn(name ="Item_Id" )
     private ItemVO itemVO;
 }
+
+//df
