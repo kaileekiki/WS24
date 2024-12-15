@@ -113,7 +113,7 @@ public class ItemController {
     @RequestMapping(value = "/edit", method = RequestMethod.POST)
     public String editItem(@ModelAttribute ItemVO item) {
         itemService.updateItem(item); // 서비스 호출로 수정 처리
-        return "redirect:/mypage?message=상품이 성공적으로 수정되었습니다.";
+        return "redirect:/mypage";
     }
 
 }
