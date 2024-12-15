@@ -29,6 +29,9 @@ public class ItemService {
         return itemDAO.getItemsByUserId(userId);
     }
 
+    public void incrementPeople(int id) {
+        itemDAO.incrementPeople(id);
+    }
     public void deleteItem(int id) {
         itemDAO.deleteItem(id);
     }

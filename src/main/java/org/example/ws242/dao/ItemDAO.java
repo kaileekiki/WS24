@@ -59,6 +59,9 @@ public class ItemDAO {
     public List<ItemVO> getItemsByUserId(String userId) {
         return sqlSession.selectList("Item.getItemsByUserId", userId);
     }
+    public void incrementPeople(int id) {
+        sqlSession.update("Item.incrementPeople", id);
+    }
 
     public void deleteItem(int id) {
         sqlSession.delete("Item.deleteItem", id);

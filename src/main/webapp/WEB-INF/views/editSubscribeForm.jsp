@@ -68,7 +68,7 @@
 <body>
 <div class="container">
     <h2>구독 수정</h2>
-    <form method="post" action="${pageContext.request.contextPath}/subscribe/edit">
+    <form method="post" action="${pageContext.request.contextPath}/subscribe/editok">
         <input type="hidden" name="id" value="${subscribe.id}" />
 
         <div class="mb-3">

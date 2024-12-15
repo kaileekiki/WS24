@@ -110,7 +110,7 @@ public class ItemController {
         return "editItemForm"; // JSP 파일로 연결
     }
 
-    @RequestMapping(value = "/edit", method = RequestMethod.POST)
+    @RequestMapping(value = "/editok", method = RequestMethod.POST)
     public String editItem(@ModelAttribute ItemVO item) {
         itemService.updateItem(item); // 서비스 호출로 수정 처리
         return "redirect:/mypage";
