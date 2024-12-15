@@ -28,6 +28,9 @@ public class SubscribeService {
         return subscribeDAO.getSubscribesByUserId(userId);
     }
 
+    public void incrementPeople(int id) {
+        subscribeDAO.incrementPeople(id);
+    }
     public void deleteSubscribe(int id) {
         subscribeDAO.deleteSubscribe(id);
     }

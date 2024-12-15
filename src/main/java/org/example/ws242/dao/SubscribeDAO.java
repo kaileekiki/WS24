@@ -29,6 +29,9 @@ public class SubscribeDAO {
         return sqlSession.selectList("Subscribe.getSubscribesByUserId", userId);
     }
 
+    public void incrementPeople(int id) {
+        sqlSession.update("Subscribe.incrementPeople", id);
+    }
     public void deleteSubscribe(int id) {
         sqlSession.delete("Subscribe.deleteSubscribe", id);
     }
