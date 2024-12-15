@@ -71,7 +71,7 @@ public class SubscribeController {
         return "editSubscribeForm"; // JSP 파일로 연결
     }
 
-    @RequestMapping(value = "/edit", method = RequestMethod.POST)
+    @RequestMapping(value = "/editok", method = RequestMethod.POST)
     public String editSubscribe(@ModelAttribute SubscribeVO subscribe) {
         subscribeService.updateSubscribe(subscribe);
         return "redirect:/mypage";

@@ -14,9 +14,45 @@
 
 
 
-    <select id="getItemById" parameterType="int" resultType="org.example.ws242.vo.ItemVO">
-        SELECT * FROM Item WHERE id = #{id};
+    <resultMap id="ItemResultMap" type="org.example.ws242.vo.ItemVO">
+        <id property="id" column="id" />
+        <result property="title" column="title" />
+        <result property="content" column="content" />
+        <result property="region" column="region" />
+        <result property="price" column="price" />
+        <result property="itemLink" column="itemLink" />
+        <result property="kakao" column="kakao" />
+        <result property="peopleLimit" column="peopleLimit" />
+        <result property="filename" column="filename" />
+        <result property="people" column="people" />
+        <!-- userVO와 연관된 데이터 매핑 -->
+        <association property="userVO" javaType="org.example.ws242.vo.UserVO">
+            <id property="userid" column="userVO_userid" />
+            <result property="username" column="userVO_username" />
+        </association>
+    </resultMap>
+
+    <!-- ResultMap을 사용하는 select -->
+    <select id="getItemById" parameterType="int" resultMap="ItemResultMap">
+        SELECT
+        i.*,
+        u.userid AS userVO_userid,
+        u.username AS userVO_username
+        FROM
+        Item i
+        LEFT JOIN
+        User u
+        ON
+        i.user_id = u.userid
+        WHERE
+        i.id = #{id};
     </select>
+
+    <update id="incrementPeople" parameterType="int">
+        UPDATE Item
+        SET people = people + 1
+        WHERE id = #{id}
+    </update>
 
 
     <select id="getItemsByUserId" parameterType="string" resultType="org.example.ws242.vo.ItemVO">

@@ -144,6 +144,64 @@
 <div>
     <a href="${pageContext.request.contextPath}/item/list" class="back-button">상품 목록으로 돌아가기</a>
 </div>
+
+<div>
+    <form action="${pageContext.request.contextPath}/joinitem/add" method="post">
+        <input type="hidden" name="itemId" value="${item.id}" />
+        <button type="submit" class="back-button">찜</button>
+    </form>
+</div>
+
+<script>
+    // URL에서 errorMessage 파라미터를 추출하는 함수
+    function getParameterByName(name) {
+        const url = window.location.href;
+        name = name.replace(/[\[\]]/g, '\\$&');
+        const regex = new RegExp('[?&]' + name + '(=([^&#]*)|&|#|$)');
+        const results = regex.exec(url);
+        if (!results) return null;
+        if (!results[2]) return '';
+        return decodeURIComponent(results[2].replace(/\+/g, ' '));
+    }
+
+    // 에러 메시지가 있는 경우 팝업으로 표시
+    document.addEventListener('DOMContentLoaded', function () {
+        const errorMessage = getParameterByName('errorMessage');
+        if (errorMessage) {
+            alert(errorMessage);
+        }
+    });
+
+    <%--function deleteItem(button) {--%>
+    <%--    // 부모 요소에서 data-id 속성을 가져옴--%>
+    <%--    const itemId = button.closest('.item').getAttribute('data-id');--%>
+    <%--    console.log("Deleting item with ID:", itemId); // 디버깅용 로그--%>
+
+    <%--    if (itemId) {--%>
+    <%--        if (confirm("이 상품을 삭제하시겠습니까?")) {--%>
+    <%--            location.href = `${pageContext.request.contextPath}/item/delete?id=${itemId}`;--%>
+    <%--        }--%>
+    <%--    } else {--%>
+    <%--        alert("유효하지 않은 아이템 ID입니다.");--%>
+    <%--    }--%>
+    <%--}--%>
+
+
+    <%--function deleteSubscribe(subscribeId) {--%>
+    <%--    console.log("Deleting subscribe with ID:", subscribeId); // 디버깅용 로그--%>
+    <%--    if (confirm("이 구독 상품을 삭제하시겠습니까?")) {--%>
+    <%--        location.href = `${pageContext.request.contextPath}/subscribe/delete?id=${subscribe.id}`;--%>
+    <%--    }--%>
+
+    // Flash Attribute로 전달된 메시지 확인
+    const message = "${message}";
+    if (message) {
+        alert(message); // 메시지를 팝업으로 표시
+    }
+</script>
+
+
+
 <jsp:include page="bottom.jsp" />
 </body>
 </html>

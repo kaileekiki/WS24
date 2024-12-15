@@ -8,9 +8,46 @@
         SELECT * FROM Subscribe
     </select>
 
-    <select id="getSubscribeById" parameterType="int" resultType="org.example.ws242.vo.SubscribeVO">
-        SELECT * FROM Subscribe WHERE id = #{id};
-    </select>
+        <!-- ResultMap 정의 -->
+        <resultMap id="SubscribeResultMap" type="org.example.ws242.vo.SubscribeVO">
+            <id property="id" column="id" />
+            <result property="regdate" column="regdate" />
+            <result property="title" column="title" />
+            <result property="region" column="region" />
+            <result property="price" column="price" />
+            <result property="kakao" column="kakao" />
+            <result property="peopleLimit" column="peopleLimit" />
+            <result property="people" column="people" />
+            <result property="startDate" column="startDate" />
+            <result property="endDate" column="endDate" />
+            <!-- UserVO와 연관된 데이터 매핑 -->
+            <association property="userVO" javaType="org.example.ws242.vo.UserVO">
+                <id property="userid" column="userVO_userid" />
+                <result property="username" column="userVO_username" />
+            </association>
+        </resultMap>
+
+        <!-- ResultMap을 사용하는 select -->
+        <select id="getSubscribeById" parameterType="int" resultMap="SubscribeResultMap">
+            SELECT
+            s.*,
+            u.userid AS userVO_userid,
+            u.username AS userVO_username
+            FROM
+            Subscribe s
+            LEFT JOIN
+            User u
+            ON
+            s.user_id = u.userid
+            WHERE
+            s.id = #{id};
+        </select>
+
+    <update id="incrementPeople" parameterType="int">
+        UPDATE Subscribe
+        SET people = people + 1
+        WHERE id = #{id}
+    </update>
 
     <select id="getSubscribesByUserId" parameterType="string" resultType="org.example.ws242.vo.SubscribeVO">
         SELECT * FROM Subscribe WHERE user_id = #{userId};
